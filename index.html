@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DML Computers | Cyber Workstations</title>
+    <style>
+        :root {
+            --neon-cyan: #00f0ff;
+            --neon-magenta: #ff007f;
+            --dark-bg: #0a0a12;
+            --panel-bg: rgba(16, 16, 28, 0.85);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Courier New', Courier, monospace; }
+        body { background-color: var(--dark-bg); color: #fff; overflow-x: hidden; position: relative; }
+
+        #bg-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; opacity: 0.18; }
+
+        header { padding: 40px 20px; text-align: center; border-bottom: 2px dashed var(--neon-cyan); position: relative; }
+        .logo-container { display: inline-block; padding: 20px 40px; border: 3px solid var(--neon-cyan); background: var(--panel-bg); box-shadow: 0 0 25px rgba(0,240,255,0.4); transform: skew(-5deg); }
+        h1 { font-size: 3rem; color: #fff; text-shadow: 0 0 10px var(--neon-cyan); letter-spacing: 4px; }
+        .tagline { color: var(--neon-magenta); font-weight: bold; margin-top: 10px; letter-spacing: 2px; }
+
+        .container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
+
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+        @media(max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+
+        .card { background: var(--panel-bg); border: 1px solid rgba(0,240,255,0.25); border-left: 6px solid var(--neon-cyan); padding: 30px; position: relative; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.6); backdrop-filter: blur(5px); }
+        .card::before { content: 'SYSTEM_LOAD_OK'; position: absolute; top: 5px; right: 5px; font-size: 0.6rem; color: var(--neon-cyan); opacity: 0.6; }
+        .card.gaming { border-left-color: var(--neon-magenta); }
+
+        h2 { font-size: 1.8rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; color: #fff; text-shadow: 0 0 5px rgba(255,255,255,0.2); }
+        .price { font-size: 2.2rem; color: var(--neon-cyan); font-weight: bold; margin: 15px 0; text-shadow: 0 0 10px rgba(0,240,255,0.3); }
+        .gaming .price { color: var(--neon-magenta); text-shadow: 0 0 10px rgba(255,0,127,0.3); }
+
+        ul { list-style: none; margin-bottom: 25px; }
+        li { margin-bottom: 10px; padding-left: 20px; position: relative; font-size: 1rem; color: #e0e0e6; line-height: 1.4; }
+        li::before { content: '🖲️'; position: absolute; left: 0; font-size: 0.85rem; top: 2px; }
+
+        .btn { display: block; width: 100%; padding: 15px; text-align: center; background: transparent; border: 2px solid var(--neon-cyan); color: var(--neon-cyan); font-weight: bold; text-transform: uppercase; cursor: pointer; transition: all 0.3s; text-decoration: none; box-shadow: inset 0 0 0 0 var(--neon-cyan); letter-spacing: 1px; }
+        .btn:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 20px var(--neon-cyan); transform: scale(1.02); }
+        .gaming .btn { border-color: var(--neon-magenta); color: var(--neon-magenta); }
+        .gaming .btn:hover { background: var(--neon-magenta); color: #fff; box-shadow: 0 0 20px var(--neon-magenta); }
+
+        footer { margin-top: 100px; padding: 40px 20px; border-top: 1px dashed rgba(0,240,255,0.2); text-align: center; font-size: 0.85rem; color: #888; background: rgba(10,10,18,0.9); }
+        footer p { letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <header>
+        <div class="logo-container">
+            <h1>DML COMPUTERS</h1>
+            <p class="tagline">// SECURE LINUX WORKSTATIONS</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="grid">
+
+            <!-- Workstation -->
+            <div class="card">
+                <h2>DML Workstation</h2>
+                <p style="color:#aaa; font-style: italic; margin-bottom: 15px;">Optimised everyday processing architecture for office, administration & web deployments.</p>
+                <div class="price">£190</div>
+                <ul>
+                    <li>DML Secure OS (Optimised Linux Core)</li>
+                    <li>Fast Energy-Efficient Processing Units</li>
+                    <li>8GB High-Speed System Workspace Memory</li>
+                    <li>256GB Ultra-Fast NVMe M.2 Solid State Drive</li>
+                    <li>Pre-loaded Office Suite (Word/Excel Compatible)</li>
+                    <li>Native Malware Immunity & Zero Ad Pop-ups</li>
+                </ul>
+                <a href="mailto:orders@dmlcomputers.co.uk?subject=Order Execution Request: DML Workstation" class="btn">Initiate Order Protocol</a>
+            </div>
+
+            <!-- Gaming PC -->
+            <div class="card gaming">
+                <h2>DML Apex Core</h2>
+                <p style="color:#aaa; font-style: italic; margin-bottom: 15px;">Flashy hybrid gaming setup engineered for tactical frame rates and modular upgrades.</p>
+                <div class="price">£215</div>
+                <ul>
+                    <li>DML Secure OS (Gaming Pipeline Kernel)</li>
+                    <li>High-Throughput Quad-Core Compute Node</li>
+                    <li>8GB Gaming-Grade System Memory Core</li>
+                    <li>512GB High-Capacity M.2 NVMe Ecosystem</li>
+                    <li>Futuristic Dynamic RGB LED Ventilation Chassis</li>
+                    <li>Power Architecture Ready for Dedicated GPUs</li>
+                </ul>
+                <a href="mailto:orders@dmlcomputers.co.uk?subject=Order Execution Request: DML Apex" class="btn">Initiate Order Protocol</a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>⚡ HAND-BUILT IN TILBURY, ESSEX // PERMANENT HARDWARE ECOSYSTEM ⚡</p>
+        <p style="margin-top:12px; color: #555;">© 2026 DML COMPUTERS. DIGITAL ARCHITECTURE VERIFIED.</p>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize); resize();
+
+        const chars = "01010101XYZ##@@%%&&++--//";
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 18, 0.06)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00f0ff';
+            ctx.font = 'bold ' + fontSize + 'px monospace';
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 30);
+    </script>
+</body>
+</html>
