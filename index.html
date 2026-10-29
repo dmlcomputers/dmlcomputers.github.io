@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DML Computers | Premium IT & Computer Services</title>
+    <title>DML Computers | Premium IT & Workstation Frameworks</title>
     <style>
         :root {
             --bg-color: #0f1419;
             --card-bg: #151b24;
             --accent-color: #1793d1; /* Arch Linux Blue */
+            --accent-green: #00ff66;
             --text-main: #f0f1f2;
             --text-muted: #5c6773;
+            --terminal-bg: #05080c;
         }
 
         body {
@@ -62,11 +64,19 @@
             margin: 2rem auto;
         }
 
+        h2 {
+            color: var(--accent-color);
+            border-left: 3px solid var(--accent-color);
+            padding-left: 10px;
+            letter-spacing: 1px;
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 3rem;
         }
 
         .card {
@@ -74,6 +84,9 @@
             border: 1px solid #1a233a;
             border-radius: 4px;
             padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             transition: transform 0.2s, border-color 0.2s;
         }
 
@@ -83,7 +96,7 @@
         }
 
         .card h3 {
-            color: var(--accent-color);
+            color: var(--text-main);
             margin-top: 0;
         }
 
@@ -95,6 +108,101 @@
             border-radius: 3px;
             display: inline-block;
             margin-bottom: 1rem;
+            align-self: flex-start;
+        }
+
+        .price-tag {
+            font-size: 1.3rem;
+            color: var(--accent-green);
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        /* Interactive Terminal Styling */
+        .terminal-box {
+            background-color: var(--terminal-bg);
+            border: 1px solid #1a233a;
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #1a233a;
+            padding-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot-r { background-color: #ff5f56; }
+        .dot-y { background-color: #ffbd2e; }
+        .dot-g { background-color: #27c93f; }
+
+        .terminal-output {
+            color: var(--accent-green);
+            line-height: 1.4;
+            white-space: pre-wrap;
+        }
+
+        /* Ticket Submission Module */
+        .form-box {
+            background-color: var(--card-bg);
+            border: 1px solid #1a233a;
+            border-radius: 4px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--bg-color);
+            border: 1px solid #1a233a;
+            border-radius: 4px;
+            color: var(--text-main);
+            font-family: monospace;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        button {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 0.8rem 2rem;
+            font-family: monospace;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: rgba(23, 147, 209, 0.1);
         }
 
         footer {
@@ -112,7 +220,6 @@
 
     <header>
         <div class="logo-container">
-            <!-- This pulls the logo file from your root server folder -->
             <img src="logo.png" alt="DML Computers Logo" class="logo-img">
         </div>
         <h1>DML COMPUTERS</h1>
@@ -120,32 +227,94 @@
     </header>
 
     <div class="container">
-        <h2>Our Core Frameworks</h2>
         
+        <!-- Module 1: Console Simulator -->
+        <h2>01. Interactive System Diagnostics</h2>
+        <div class="terminal-box">
+            <div class="terminal-header">
+                <div class="dot dot-r"></div>
+                <div class="dot dot-y"></div>
+                <div class="dot dot-g"></div>
+                <span style="margin-left: 10px;">dml_diagnose.sh</span>
+            </div>
+            <div class="terminal-output" id="term-out">Initializing dml-core pipelines...</div>
+        </div>
+
+        <!-- Module 2: Pricing Matrix -->
+        <h2>02. Architecture Fees & Frameworks</h2>
         <div class="grid">
             <div class="card">
-                <span class="status-tag">Service</span>
-                <h3>Custom System Builds</h3>
-                <p>Tailored computer design and hardware architecture optimization. Specializing in high-performance Linux workstations.</p>
+                <div>
+                    <span class="status-tag">Workstations</span>
+                    <h3>Custom Machine Build</h3>
+                    <p>Complete components architecture setup, physical mounting, cable optimization, and post-assembly performance optimization.</p>
+                </div>
+                <div class="price-tag">£95.00 / fixed</div>
             </div>
 
             <div class="card">
-                <span class="status-tag">Support</span>
-                <h3>Hardware Diagnostics</h3>
-                <p>Component-level troubleshooting, repair, and clean architectural modifications for consumer and enterprise rigs.</p>
+                <div>
+                    <span class="status-tag">Diagnostics</span>
+                    <h3>Hardware Diagnostics</h3>
+                    <p>Component breakdown testing, trace fault isolation, thermal pad replacement, and structural repairs.</p>
+                </div>
+                <div class="price-tag">£45.00 / hour</div>
             </div>
 
             <div class="card">
-                <span class="status-tag">Enterprise</span>
-                <h3>Managed IT Pipelines</h3>
-                <p>Secure operational network setups, cloud migration automation, and baseline cybersecurity protection frameworks.</p>
+                <div>
+                    <span class="status-tag">OS Deployment</span>
+                    <h3>Linux Architecture Configuration</h3>
+                    <p>Clean environment provisioning, kernel setup, system partition optimization, and full data storage integration.</p>
+                </div>
+                <div class="price-tag">£65.00 / flat</div>
             </div>
         </div>
+
+        <!-- Module 3: Contact Form -->
+        <h2>03. Initialize Service Request Ticket</h2>
+        <div class="form-box">
+            <form action="https://formspree.io" method="POST">
+                <div class="form-group">
+                    <label>Operator / Name:</label>
+                    <input type="text" name="name" required placeholder="e.g. lord_protector">
+                </div>
+                <div class="form-group">
+                    <label>Communication Routing / Email Address:</label>
+                    <input type="email" name="email" required placeholder="name@domain.com">
+                </div>
+                <div class="form-group">
+                    <label>Hardware Error Logs / Problem Description:</label>
+                    <textarea name="message" rows="5" required placeholder="Detail components or operating system failure logs here..."></textarea>
+                </div>
+                <button type="submit">TRANSMIT TICKET PACKET</button>
+            </form>
+        </div>
+
     </div>
 
     <footer>
         <p>&copy; 2026 DML Computers. Powered by Arch Linux systems.</p>
     </footer>
 
-</body>
-</html>
+    <script>
+        // Automated typing simulator text matrix
+        const outputLines = [
+            "Initializing dml-core pipelines...",
+            "Checking Arch Linux kernel metrics... [ OK ]",
+            "Probing local storage array... 3 Disks Found.",
+            "Analyzing hardware framework efficiency... 100%",
+            "Ready for external commands. System operational."
+        ];
+        let lineIdx = 0;
+        const outBox = document.getElementById("term-out");
+        
+        function typeTerminal() {
+            if(lineIdx < outputLines.length) {
+                if(lineIdx === 0) outBox.innerHTML = "";
+                outBox.innerHTML += (lineIdx > 0 ? "\n" : "") + "⚡ " + outputLines[lineIdx];
+                lineIdx++;
+                setTimeout(typeTerminal, 1200);
+            }
+        }
+        setTimeout(typeTerminal, 1000);
