@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DML Computers | Premium IT & Workstation Frameworks</title>
+    <title>DML Computers | Premium Cybernetic Architecture & IT</title>
     <style>
         :root {
-            --bg-color: #0f1419;
-            --card-bg: #151b24;
-            --accent-color: #1793d1; /* Arch Linux Blue */
-            --accent-green: #00ff66;
-            --text-main: #f0f1f2;
+            --bg-color: #0a0e14;
+            --card-bg: #101520;
+            --accent-blue: #1793d1; /* Arch Linux Core Blue */
+            --accent-green: #00ff66; /* Cyber Neon Green */
+            --text-main: #f0f3f6;
             --text-muted: #5c6773;
-            --terminal-bg: #05080c;
+            --terminal-bg: #05070a;
+            --border-color: #1a2436;
         }
 
         body {
@@ -29,190 +30,287 @@
 
         header {
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 4rem 1rem 3rem 1rem;
             width: 100%;
-            border-bottom: 1px solid #1a233a;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(180deg, #0d131f 0%, var(--bg-color) 100%);
+            box-sizing: border-box;
         }
 
         .logo-container {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .logo-img {
-            max-height: 120px;
+            max-height: 140px;
             width: auto;
-            border-radius: 4px;
-            border: 1px dashed var(--text-muted);
-            padding: 0.5rem;
+            border-radius: 6px;
+            border: 1px dashed var(--accent-blue);
+            padding: 0.8rem;
+            background-color: var(--terminal-bg);
+            box-shadow: 0 0 20px rgba(23, 147, 209, 0.15);
         }
 
         header h1 {
-            color: var(--accent-color);
+            color: var(--accent-blue);
             margin: 0;
-            font-size: 2.5rem;
-            letter-spacing: 2px;
+            font-size: 3rem;
+            letter-spacing: 4px;
+            text-shadow: 0 0 10px rgba(23, 147, 209, 0.3);
         }
 
         header p {
             color: var(--text-muted);
-            margin-top: 0.5rem;
+            margin-top: 0.6rem;
+            font-weight: bold;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             width: 90%;
             margin: 2rem auto;
         }
 
         h2 {
-            color: var(--accent-color);
-            border-left: 3px solid var(--accent-color);
-            padding-left: 10px;
-            letter-spacing: 1px;
+            color: var(--accent-blue);
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 12px;
+            letter-spacing: 2px;
+            font-size: 1.5rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 1.5rem;
             margin-bottom: 3rem;
         }
 
+        /* Futuristic Clickable Cards */
         .card {
             background-color: var(--card-bg);
-            border: 1px solid #1a233a;
-            border-radius: 4px;
-            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1.8rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.2s, border-color 0.2s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-sizing: border-box;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-blue);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            border-color: var(--accent-color);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 20px rgba(23, 147, 209, 0.1);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
         }
 
         .card h3 {
             color: var(--text-main);
             margin-top: 0;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+        }
+
+        .card p {
+            color: #b2ccd6;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         .status-tag {
             background-color: rgba(23, 147, 209, 0.1);
-            color: var(--accent-color);
-            padding: 0.2rem 0.5rem;
-            font-size: 0.8rem;
+            color: var(--accent-blue);
+            padding: 0.3rem 0.6rem;
+            font-size: 0.75rem;
             border-radius: 3px;
             display: inline-block;
-            margin-bottom: 1rem;
-            align-self: flex-start;
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(23, 147, 209, 0.2);
         }
 
         .price-tag {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--accent-green);
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        /* Interactive Terminal Styling */
+        .click-hint {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card:hover .click-hint {
+            color: var(--accent-green);
+        }
+
+        /* Live Core Terminal */
         .terminal-box {
             background-color: var(--terminal-bg);
-            border: 1px solid #1a233a;
+            border: 1px solid var(--border-color);
             border-radius: 6px;
             padding: 1.5rem;
             margin-bottom: 3rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
         }
 
         .terminal-header {
             display: flex;
-            gap: 6px;
+            align-items: center;
+            gap: 8px;
             margin-bottom: 1rem;
-            border-bottom: 1px solid #1a233a;
-            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.6rem;
             color: var(--text-muted);
             font-size: 0.8rem;
         }
 
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
         .dot-r { background-color: #ff5f56; }
         .dot-y { background-color: #ffbd2e; }
         .dot-g { background-color: #27c93f; }
 
         .terminal-output {
             color: var(--accent-green);
-            line-height: 1.4;
+            line-height: 1.5;
             white-space: pre-wrap;
+            font-size: 0.95rem;
         }
 
-        /* Ticket Submission Module */
+        /* Ticket & Form Matrix */
         .form-box {
             background-color: var(--card-bg);
-            border: 1px solid #1a233a;
-            border-radius: 4px;
-            padding: 2rem;
-            margin-bottom: 3rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 2.5rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-sizing: border-box;
         }
 
         .form-group {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-main);
-            font-size: 0.9rem;
+            margin-bottom: 0.6rem;
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .form-group input, .form-group textarea {
             width: 100%;
-            padding: 0.8rem;
+            padding: 1rem;
             background-color: var(--bg-color);
-            border: 1px solid #1a233a;
+            border: 1px solid var(--border-color);
             border-radius: 4px;
             color: var(--text-main);
-            font-family: monospace;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
             box-sizing: border-box;
+            transition: border-color 0.2s;
         }
 
         .form-group input:focus, .form-group textarea:focus {
             outline: none;
-            border-color: var(--accent-color);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 10px rgba(23, 147, 209, 0.1);
         }
 
-        button {
-            background-color: transparent;
-            color: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            padding: 0.8rem 2rem;
+        .btn-wrapper {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        button.primary-btn {
+            background-color: rgba(23, 147, 209, 0.05);
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+            padding: 1rem 2rem;
             font-family: monospace;
+            font-size: 1rem;
             cursor: pointer;
             border-radius: 4px;
             font-weight: bold;
-            transition: background 0.2s;
+            letter-spacing: 1px;
+            transition: all 0.2s;
         }
 
-        button:hover {
-            background-color: rgba(23, 147, 209, 0.1);
+        button.primary-btn:hover {
+            background-color: rgba(23, 147, 209, 0.15);
+            box-shadow: 0 0 15px rgba(23, 147, 209, 0.2);
+        }
+
+        a.secondary-btn {
+            background-color: rgba(0, 255, 102, 0.02);
+            color: var(--accent-green);
+            border: 1px solid var(--accent-green);
+            padding: 1rem 2rem;
+            font-family: monospace;
+            font-size: 1rem;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            box-sizing: border-box;
+        }
+
+        a.secondary-btn:hover {
+            background-color: rgba(0, 255, 102, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.15);
         }
 
         footer {
             margin-top: auto;
-            padding: 2rem;
+            padding: 2.5rem;
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             width: 100%;
-            border-top: 1px solid #1a233a;
+            border-top: 1px solid var(--border-color);
+            background-color: #070b10;
+            box-sizing: border-box;
         }
     </style>
 </head>
@@ -223,100 +321,18 @@
             <img src="logo.png" alt="DML Computers Logo" class="logo-img">
         </div>
         <h1>DML COMPUTERS</h1>
-        <p>[ System Deployment Status: ONLINE ]</p>
+        <p>[ System Architecture Core Node // Active Status: ONLINE ]</p>
     </header>
 
     <div class="container">
         
-        <!-- Module 1: Console Simulator -->
-        <h2>01. Interactive System Diagnostics</h2>
+        <!-- Module 1: Live Core Console Monitoring -->
+        <h2>01 // Core Terminal Diagnostic Node</h2>
         <div class="terminal-box">
             <div class="terminal-header">
                 <div class="dot dot-r"></div>
                 <div class="dot dot-y"></div>
                 <div class="dot dot-g"></div>
-                <span style="margin-left: 10px;">dml_diagnose.sh</span>
-            </div>
-            <div class="terminal-output" id="term-out">Initializing dml-core pipelines...</div>
-        </div>
-
-        <!-- Module 2: Pricing Matrix -->
-        <h2>02. Architecture Fees & Frameworks</h2>
-        <div class="grid">
-            <div class="card" onclick="selectFramework('Custom Machine Build', 'Please specify your chosen hardware framework:\n- CPU:\n- Motherboard:\n- GPU:\n- RAM:\n- Storage:\n- Power Supply:\n- Case:')" style="cursor: pointer;">
-                <div>
-                    <span class="status-tag">Workstations</span>
-                    <h3>Custom Machine Build</h3>
-                    <p>Complete components architecture setup, physical mounting, cable optimization, and post-assembly performance optimization.</p>
-                </div>
-                <div class="price-tag">£95.00 / fixed</div>
+                <span style="margin-left: 10px; font-weight: bold;">dml_monitor.sh</span>
             </div>
 
-            <div class="card">
-                <div>
-                    <span class="status-tag">Diagnostics</span>
-                    <h3>Hardware Diagnostics</h3>
-                    <p>Component breakdown testing, trace fault isolation, thermal pad replacement, and structural repairs.</p>
-                </div>
-                <div class="price-tag">£45.00 / hour</div>
-            </div>
-
-            <div class="card">
-                <div>
-                    <span class="status-tag">OS Deployment</span>
-                    <h3>Linux Architecture Configuration</h3>
-                    <p>Clean environment provisioning, kernel setup, system partition optimization, and full data storage integration.</p>
-                </div>
-                <div class="price-tag">£65.00 / flat</div>
-            </div>
-        </div>
-
-        <!-- Module 3: Contact Form -->
-        <h2>03. Initialize Service Request Ticket</h2>
-        <div class="form-box">
-            <div data-fs-success style="display:none; padding:12px; background:#d4edda; color:#155724; border:1px solid #c3e6cb; border-radius:4px; margin-bottom:20px;">[ TRANSMISSION RECEIVED ]: Ticket packet successfully queued. Check your email inbox.</div>
-            <div data-fs-error style="display:none; padding:12px; background:#f8d7da; color:#721c24; border:1px solid #f5c6cb; border-radius:4px; margin-bottom:20px;"></div>
-            <form id="dml-ticket-form">
-                <div class="form-group">
-                    <label>Operator / Name:</label>
-                    <input type="text" name="name" required data-fs-field placeholder="e.g. lord_protector">
-                </div>
-                <div class="form-group">
-                    <label>Communication Routing / Email Address:</label>
-                    <input type="email" name="email" required data-fs-field placeholder="name@domain.com">
-                </div>
-                <div class="form-group">
-                    <label>Hardware Error Logs / Problem Description:</label>
-                    <textarea name="message" rows="5" required data-fs-field placeholder="Detail components or operating system failure logs here..."></textarea>
-                </div>
-                <button type="submit" data-fs-submit-btn>TRANSMIT TICKET PACKET</button>
-            </form>
-        </div>
-
-    </div>
-
-    <footer>
-        <p>&copy; 2026 DML Computers. Powered by Arch Linux systems.</p>
-    </footer>
-
-    <script>
-        // Automated typing simulator text matrix
-        const outputLines = [
-            "Initializing dml-core pipelines...",
-            "Checking Arch Linux kernel metrics... [ OK ]",
-            "Probing local storage array... 3 Disks Found.",
-            "Analyzing hardware framework efficiency... 100%",
-            "Ready for external commands. System operational."
-        ];
-        let lineIdx = 0;
-        const outBox = document.getElementById("term-out");
-        
-        function typeTerminal() {
-            if(lineIdx < outputLines.length) {
-                if(lineIdx === 0) outBox.innerHTML = "";
-                outBox.innerHTML += (lineIdx > 0 ? "\n" : "") + "⚡ " + outputLines[lineIdx];
-                lineIdx++;
-                setTimeout(typeTerminal, 1200);
-            }
-        }
-        setTimeout(typeTerminal, 1000);
