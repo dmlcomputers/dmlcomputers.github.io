@@ -8,323 +8,58 @@
         :root {
             --bg-dark: #06090e;
             --panel-bg: #0d1117;
-            --accent-glow: #0071e3; /* Premium Tech Blue */
-            --accent-success: #30d5c8; /* Bright Turquoise Mint */
+            --accent-glow: #0071e3;
+            --accent-success: #30d5c8;
             --text-light: #ffffff;
             --text-gray: #8b949e;
-            --border-glow: rgba(0, 113, 227, 0.25);
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-
-        header {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: linear-gradient(180deg, #161b22 0%, var(--bg-dark) 100%);
-            border-bottom: 1px solid #21262d;
-        }
-
-        .logo-box {
-            margin-bottom: 1.5rem;
-        }
-
-        .logo-img {
-            max-height: 110px;
-            width: auto;
-            border-radius: 8px;
-            box-shadow: 0 0 30px rgba(0, 113, 227, 0.3);
-            border: 2px solid var(--accent-glow);
-            padding: 0.5rem;
-            background: #0d1117;
-        }
-
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            margin: 0;
-            background: linear-gradient(120deg, #ffffff 40%, #58a6ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        header p {
-            color: var(--text-gray);
-            font-size: 1.1rem;
-            margin-top: 0.5rem;
-        }
-
-        .main-container {
-            max-width: 1000px;
-            width: 90%;
-            margin: 3rem auto;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
-        }
-
-        .section-desc {
-            color: var(--text-gray);
-            margin-top: 0;
-            margin-bottom: 2rem;
-            font-size: 1.05rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .service-card {
-            background-color: var(--panel-bg);
-            border: 1px solid #21262d;
-            border-radius: 12px;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-
-        .service-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent-glow);
-            box-shadow: 0 8px 30px rgba(0, 113, 227, 0.25);
-        }
-
-        .badge {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--accent-glow);
-            background: rgba(0, 113, 227, 0.1);
-            padding: 0.3rem 0.7rem;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(0, 113, 227, 0.2);
-        }
-
-        .service-card h3 {
-            margin: 0 0 0.8rem 0;
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-
-        .service-card p {
-            color: #c9d1d9;
-            margin: 0;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .card-bottom {
-            margin-top: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-top: 1px solid #21262d;
-            padding-top: 1.2rem;
-        }
-
-        .price-text {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--accent-success);
-        }
-
-        .action-label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--accent-glow);
-            background: rgba(255,255,255,0.03);
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            border: 1px solid #21262d;
-            transition: all 0.2s;
-        }
-
-        .service-card:hover .action-label {
-            background: var(--accent-glow);
-            color: var(--text-light);
-            border-color: var(--accent-glow);
-        }
-
-        .order-panel {
-            background-color: var(--panel-bg);
-            border: 1px solid #21262d;
-            border-radius: 12px;
-            padding: 2.5rem;
-            margin-bottom: 5rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-
-        .input-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        @media (max-width: 650px) {
-            .input-row { grid-template-columns: 1fr; gap: 1.2rem; }
-        }
-
-        .field-block {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 1.5rem;
-        }
-
-        .field-block label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-gray);
-            margin-bottom: 0.5rem;
-        }
-
-        .field-block input, .field-block textarea {
-            background-color: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            padding: 0.9rem;
-            color: var(--text-light);
-            font-size: 1rem;
-            font-family: inherit;
-            transition: border-color 0.2s;
-        }
-
-        .field-block input:focus, .field-block textarea:focus {
-            outline: none;
-            border-color: var(--accent-glow);
-        }
-
-        .submit-trigger {
-            background: linear-gradient(180deg, #1f6feb 0%, #0e56c5 100%);
-            border: 1px solid #388bfd;
-            color: var(--text-light);
-            padding: 1.2rem 2.5rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.2s;
-            box-shadow: 0 4px 15px rgba(14, 86, 197, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .submit-trigger:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(14, 86, 197, 0.6);
-            background: linear-gradient(180deg, #388bfd 0%, #1f6feb 100%);
-        }
-
-        footer {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            border-top: 1px solid #21262d;
-            background-color: #0d1117;
-        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg-dark); color: var(--text-light); margin: 0; line-height: 1.6; }
+        header { text-align: center; padding: 4rem 2rem; background: linear-gradient(180deg, #161b22 0%, var(--bg-dark) 100%); border-bottom: 1px solid #21262d; }
+        .logo-img { max-height: 110px; border-radius: 8px; border: 2px solid var(--accent-glow); padding: 0.5rem; background: #0d1117; }
+        h1 { font-size: 2.8rem; font-weight: 800; margin: 0; }
+        .main-container { max-width: 1000px; width: 90%; margin: 3rem auto; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+        .service-card { background-color: var(--panel-bg); border: 1px solid #21262d; border-radius: 12px; padding: 2rem; cursor: pointer; transition: 0.25s; }
+        .service-card:hover { border-color: var(--accent-glow); transform: translateY(-4px); }
+        .order-panel { background-color: var(--panel-bg); border: 1px solid #21262d; border-radius: 12px; padding: 2.5rem; margin-bottom: 5rem; }
+        .field-block { display: flex; flex-direction: column; margin-bottom: 1.5rem; }
+        .field-block input, .field-block textarea { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 0.9rem; color: var(--text-light); font-family: inherit; }
+        .submit-trigger { background: #1f6feb; color: var(--text-light); padding: 1.2rem; border-radius: 6px; border: none; cursor: pointer; width: 100%; font-weight: 700; text-transform: uppercase; }
+        footer { text-align: center; padding: 3rem; color: var(--text-gray); border-top: 1px solid #21262d; }
     </style>
 </head>
 <body>
-
     <header>
-        <div class="logo-box">
-            <img src="logo.png" alt="DML Computers Logo" class="brand-logo logo-img">
-        </div>
+        <img src="logo.png" alt="Logo" class="logo-img">
         <h1>DML COMPUTERS</h1>
         <p>Premium Custom Workstations & Certified Hardware Architecture</p>
     </header>
-
     <div class="main-container">
-        
         <h2>Select a Custom Configuration Service</h2>
-        <p class="section-desc">Choose an option below. The order system will instantly pre-format your motherboard and CPU build parameters automatically.</p>
-
         <div class="services-grid">
-            <div class="service-card" onclick="applyBuildTemplate('Custom High-Performance PC Build', 'HARDWARE ALLOCATION SCHEMATIC:\\n- Motherboard Model: \\n- Processor (CPU): \\n- Graphic Array (GPU): \\n- Memory Kit (RAM Size): \\n- Storage Array (NVMe/SSD): \\n- Power Supply Unit: \\n- Computer Chassis / Case: ')">
-                <div>
-                    <span class="badge">Hardware Assembly</span>
-                    <h3>Custom Workstation Build</h3>
-                    <p>Complete multi-component parts staging, clean layout cable management optimization, structural system cooling design, and full post-assembly hardware benchmarking.</p>
-                </div>
-                <div class="card-bottom">
-                    <div class="price-text">£95.00</div>
-                    <div class="action-label">Select Service</div>
-                </div>
+            <div class="service-card" onclick="applyBuildTemplate('Custom Workstation Build', 'Motherboard: \nCPU: \nGPU: ')">
+                <h3>Custom Workstation Build</h3>
+                <p>Complete multi-component staging and benchmarking.</p>
             </div>
-
-            <div class="service-card" onclick="applyBuildTemplate('Hardware Repair & Fault Analysis', 'DIAGNOSTIC FAULT MATRIX:\\n- Failing Components: \\n- System Error Crash Logs: \\n- Instability Symptoms: \\n- Special Repair Requests: ')">
-                <div>
-                    <span class="badge">Hardware Care</span>
-                    <h3>Diagnostic & Parts Repair</h3>
-                    <p>Component breakdown diagnostic testing, high-grade logic lane trace troubleshooting, physical port repairs, and advanced thermal pad replacements.</p>
-                </div>
-                <div class="card-bottom">
-                    <div class="price-text">£45.00 <span style="font-size:0.75rem; color:var(--text-gray); font-weight:normal;">/ hr</span></div>
-                    <div class="action-label">Select Service</div>
-                </div>
-            </div>
-
-Use code with caution.
-Operating System
-Linux Architecture Setup
-Professional clean environment provisioning, custom system partition schema setup, kernel configuration profiling optimizations, and core software build setups.
-
-
-£65.00
-Select Service
-
-
-Configure & Launch Service Request
-Your Full Name / Moniker
-Your Contact Email Address
-System Build Specs / Hardware Manifest Details
-Launch Order Ticket via Email
-
-© 2026 DML Computers. Premium Custom Engineering. Built on Arch Linux Workspace Environments.
-function applyBuildTemplate(serviceTitle, specificationsBlueprint) {
-const specTextArea = document.getElementById("user-specs");
-if (specTextArea) {
-specTextArea.value = SELECTED SERVICE: ${serviceTitle.toUpperCase()}\n=========================================\n${specificationsBlueprint};
-document.getElementById("order-form-block").scrollIntoView({ behavior: 'smooth', block: 'center' });
-specTextArea.focus();
-}
-}
-function compileAndLaunchEmail() {
-const name = document.getElementById("user-name").value.trim();
-const email = document.getElementById("user-email").value.trim();
-const specsData = document.getElementById("user-specs").value.trim();
-if (!name || !email || !specsData) {
-alert("⚠️ Operations Blocked: Please ensure Name, Email, and System Specifications are filled out before launching your ticket.");
-return;
-}
-const emailSubject = DML Computers Service Order Request - ${name};
-const emailBody = CLIENT CONTACT DETAILS\n---------------------\nClient Name: ${name}\nClient Email: ${email}\n\nTECHNICAL PARAMETERS & HARDWARE SPECIFICATIONS\n---------------------------------------------\n${specsData};
-const mailtoDestination = `mailto:dlester626@://gmail.com{encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-            window.location.href = mailtoDestination;
-}
+        </div>
+        <h2>Configure & Launch Service Request</h2>
+        <div class="order-panel" id="order-form-block">
+            <div class="field-block"><input type="text" id="user-name" placeholder="Full Name" required></div>
+            <div class="field-block"><input type="email" id="user-email" placeholder="Email" required></div>
+            <div class="field-block"><textarea id="user-specs" rows="6" placeholder="Specifications" required></textarea></div>
+            <button type="button" class="submit-trigger" onclick="compileAndLaunchEmail()">Launch Order Ticket via Email</button>
+        </div>
+    </div>
+    <script>
+        function applyBuildTemplate(title, specs) {
+            document.getElementById("user-specs").value = `${title}\n${specs}`;
+        }
+        function compileAndLaunchEmail() {
+            const name = document.getElementById("user-name").value;
+            const email = document.getElementById("user-email").value;
+            const specs = document.getElementById("user-specs").value;
+            window.location.href = `mailto:dlester626@://gmail.com{encodeURIComponent(name + '\n' + email + '\n' + specs)}`;
+        }
+    </script>
+</body>
+</html>
