@@ -1,4 +1,5 @@
 #!/bin/bash
+#
 # ======================================================================
 # ⚡ DML COMPUTERS MASTER AUTOMATED CODELINE DEPLOYMENT
 # ======================================================================
@@ -338,7 +339,7 @@ document.getElementById("receipt-items-list").innerHTML = listBuilder;
 console.log([DATABASE AGGREGATION MATRIX LOGGED]: ${activeOrderTrackingId} captured.);
 // Trigger deep-mail system triggers and secure PayPal collection tunnels synchronously
 window.location.href = mailto:dlester626@://gmail.com{encodeURIComponent(activeOrderTrackingId + ' - Order Manifest Confirmation')}&body=${encodeURIComponent(specsEmailPayload)};
-window.open(https://paypal.com{calculatedPriceCap.toFixed(2)}, '_blank');
+(https://paypal.com{calculatedPriceCap.toFixed(2)}, '_blank');
 switchActiveView('view-receipt');
 }
 
