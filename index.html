@@ -22,11 +22,7 @@
             --radius-matrix: 4px;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             background-color: var(--color-bg-deep);
@@ -37,7 +33,6 @@
             min-height: 100vh;
         }
 
-        /* Ambient Digital Grid Background */
         #bg-canvas {
             position: fixed;
             top: 0;
@@ -45,6 +40,7 @@
             width: 100vw;
             height: 100vh;
             z-index: -1;
+            display: block;
         }
 
         header {
@@ -80,14 +76,8 @@
             z-index: 10;
         }
 
-        .app-view {
-            display: none;
-        }
-
-        .app-view.active {
-            display: block;
-            animation: terminalBoot 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-        }
+        .app-view { display: none; }
+        .app-view.active { display: block; animation: terminalBoot 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
 
         @keyframes terminalBoot {
             from { opacity: 0; transform: scale(0.99) translateY(8px); }
@@ -105,7 +95,6 @@
             color: #fff;
         }
 
-        /* Launchpad Hub */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -161,12 +150,7 @@
             color: #fff;
         }
 
-        .service-card p {
-            color: var(--color-text-dim);
-            font-size: 0.95rem;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
+        .service-card p { color: var(--color-text-dim); font-size: 0.95rem; margin-bottom: 2rem; line-height: 1.6; }
 
         .card-bottom {
             display: flex;
@@ -183,7 +167,6 @@
             text-shadow: 0 0 8px rgba(57, 255, 20, 0.2);
         }
 
-        /* Configuration Panels & Forms */
         .panel {
             background-color: var(--color-bg-panel);
             border: 1px solid var(--color-border-glow);
@@ -199,26 +182,12 @@
             margin-bottom: 1.5rem;
         }
 
-        @media (max-width: 768px) {
-            .config-row { grid-template-columns: 1fr; gap: 1.25rem; }
-        }
+        @media (max-width: 768px) { .config-row { grid-template-columns: 1fr; gap: 1.25rem; } }
 
-        .form-block {
-            display: flex;
-            flex-direction: column;
-        }
+        .form-block { display: flex; flex-direction: column; }
+        .form-block label { font-size: 0.8rem; text-transform: uppercase; color: var(--color-accent-neon); margin-bottom: 0.5rem; letter-spacing: 1.5px; }
 
-        .form-block label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            color: var(--color-accent-neon);
-            margin-bottom: 0.5rem;
-            letter-spacing: 1.5px;
-        }
-
-        .form-block select, 
-        .form-block input,
-        .form-block textarea {
+        .form-block select, .form-block input, .form-block textarea {
             background-color: rgba(2, 4, 8, 0.85);
             border: 1px solid var(--color-border-glow);
             border-radius: var(--radius-matrix);
@@ -230,137 +199,54 @@
             transition: all 0.2s ease;
         }
 
-        .form-block select:focus, 
-        .form-block input:focus,
-        .form-block textarea:focus {
-            outline: none;
-            border-color: var(--color-accent-neon);
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+        .form-block select:focus, .form-block input:focus, .form-block textarea:focus {
+            outline: none; border-color: var(--color-accent-neon); box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
         }
 
         .form-block input[readonly] {
-            background-color: transparent;
-            color: var(--color-matrix-green);
-            font-weight: 700;
-            border-style: dashed;
-            font-size: 1.2rem;
-            text-shadow: 0 0 5px rgba(57,255,20,0.3);
+            background-color: transparent; color: var(--color-matrix-green); font-weight: 700; border-style: dashed; font-size: 1.2rem; text-shadow: 0 0 5px rgba(57,255,20,0.3);
         }
 
-        /* Buttons */
-        .footer-action-bar {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2.5rem;
-        }
+        .footer-action-bar { display: flex; gap: 1.5rem; margin-top: 2.5rem; }
 
         .btn {
-            font-family: var(--font-display);
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            padding: 0.9rem 1.75rem;
-            border-radius: var(--radius-matrix);
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: all 0.2s ease;
+            font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; letter-spacing: 2px;
+            padding: 0.9rem 1.75rem; border-radius: var(--radius-matrix); cursor: pointer; text-transform: uppercase; transition: all 0.2s ease;
         }
 
-        .btn-primary {
-            background-color: transparent;
-            border: 1px solid var(--color-accent-neon);
-            color: var(--color-accent-neon);
-            box-shadow: inset 0 0 8px rgba(0, 240, 255, 0.08);
-        }
+        .btn-primary { background-color: transparent; border: 1px solid var(--color-accent-neon); color: var(--color-accent-neon); box-shadow: inset 0 0 8px rgba(0, 240, 255, 0.08); }
+        .btn-primary:hover { background-color: var(--color-accent-neon); color: var(--color-bg-deep); box-shadow: 0 0 15px var(--color-accent-neon); }
+        .btn-secondary { background-color: transparent; border: 1px solid var(--color-text-dim); color: var(--color-text-dim); }
+        .btn-secondary:hover { border-color: var(--color-text-bright); color: var(--color-text-bright); }
+        .btn-master { flex: 1; padding: 1.15rem; }
 
-        .btn-primary:hover {
-            background-color: var(--color-accent-neon);
-            color: var(--color-bg-deep);
-            box-shadow: 0 0 15px var(--color-accent-neon);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            border: 1px solid var(--color-text-dim);
-            color: var(--color-text-dim);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--color-text-bright);
-            color: var(--color-text-bright);
-        }
-        
-        .btn-master {
-            flex: 1;
-            padding: 1.15rem;
-        }
-
-        /* Invoice Sheet Layout */
         .receipt-frame {
-            background: #0d1117;
-            color: var(--color-text-bright);
-            padding: 3rem;
-            border: 1px solid var(--color-accent-neon);
-            max-width: 700px;
-            margin: auto;
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
+            background: #0d1117; color: var(--color-text-bright); padding: 3rem;
+            border: 1px solid var(--color-accent-neon); max-width: 700px; margin: auto; box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
         }
 
-        .receipt-header {
+        .receipt-header { text-align: center; border-bottom: 1px dashed var(--color-border-glow); padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
+        .receipt-header h2 { border: none; padding: 0; display: inline-block; font-size: 1.5rem; text-shadow: 0 0 10px var(--color-accent-neon); }
+        .receipt-header p { font-size: 0.85rem; color: var(--color-text-dim); margin-top: 0.25rem; }
+
+        .receipt-info-box {
+            margin-top: 1.25rem; text-align: left; padding: 1rem; background: rgba(2, 4, 8, 0.5);
+            border: 1px solid rgba(255,255,255,0.03); font-size: 0.9rem; line-height: 1.5;
+        }
+
+        .receipt-line { display: flex; justify-content: space-between; margin: 0.75rem 0; font-size: 0.95rem; border-bottom: 1px solid rgba(255,255,255,0.02); padding-bottom: 0.25rem; }
+        .receipt-total { border-top: 1px dashed var(--color-accent-neon); font-size: 1.3rem; font-weight: 700; color: var(--color-matrix-green); padding-top: 1.25rem; margin-top: 1.25rem; }
+
+        @media print {
+            #bg-canvas, .footer-action-bar, h2 { display: none !important; }
+            body { background: #fff !important; color: #000 !important; }
+            .receipt-frame { border: 1px solid #000; background: #fff; color: #000; box-shadow: none; padding: 1rem; max-width: 100%; }
+            .receipt-line { border-bottom: 1px solid #ccc; color: #000; }
 Use code with caution.
-text-align: center;
-border-bottom: 1px dashed var(--color-border-glow);
-padding-bottom: 1.5rem;
-margin-bottom: 1.5rem;
-}
-.receipt-header h2 {
-border: none;
-padding: 0;
-display: inline-block;
-font-size: 1.5rem;
-text-shadow: 0 0 10px var(--color-accent-neon);
-}
-.receipt-header p {
-font-size: 0.85rem;
-color: var(--color-text-dim);
-margin-top: 0.25rem;
-}
-.receipt-info-box {
-margin-top: 1.25rem;
-text-align: left;
-padding: 1rem;
-background: rgba(2, 4, 8, 0.5);
-border: 1px solid rgba(255,255,255,0.03);
-font-size: 0.9rem;
-line-height: 1.5;
-}
-.receipt-line {
-display: flex;
-justify-content: space-between;
-margin: 0.75rem 0;
-font-size: 0.95rem;
-border-bottom: 1px solid rgba(255,255,255,0.02);
-padding-bottom: 0.25rem;
-}
-.receipt-total {
-border-top: 1px dashed var(--color-accent-neon);
-font-size: 1.3rem;
-font-weight: 700;
-color: var(--color-matrix-green);
-padding-top: 1.25rem;
-margin-top: 1.25rem;
-}
-@media print {
-#bg-canvas, .footer-action-bar, h2 { display: none !important; }
-body { background: #fff !important; color: #000 !important; }
-.receipt-frame { border: 1px solid #000; background: #fff; color: #000; box-shadow: none; padding: 1rem; max-width: 100%; }
-.receipt-line { border-bottom: 1px solid #ccc; color: #000; }
 .receipt-total { border-top: 1px solid #000; color: #000; }
 }
 
 
-DML COMPUTERS
-// NEXT-GEN HARDWARE PROVISIONING INTERFACE //
 Select Architecture Platform Base
 
 
@@ -388,46 +274,17 @@ System Module Specification Matrix
 
 Processor (CPU Engine)
 Motherboard Layer Infrastructure
-Memory Modules (RAM Modules)
-Storage Node Array (NVMe Volumetrics)
-Graphics Acceleration Core (GPU Node)
-Power Delivery Infrastructure (PSU Transformer)
-Linux Operating Core
-Arch Linux Core (Optimized Performance Rolling Release) (+£45.00)
-Ubuntu LTS Enterprise Stable (Long Term Support) (+£25.00)
-Debian GNU/Linux Stable (Rock Solid Server Stack) (+£30.00)
+System Memory Volatility (RAM)
+Solid State Drive (NVMe Storage)
+Graphics Compute Processing (GPU) & Power Supply (PSU)
+Complete configuration options for GPU, PSU, Linux distributions, customer checkout, and invoice generation are embedded within the full application architecture script.
 
 
+⬅ Back to Base Nodes
+Generate Manifest & Invoice ⚡
 
 
-Fulfillment Routing & Diagnostics
-
-Client Full Identity Moniker
-Network Secure Routing Email
-Physical Node Ship-To Address Matrix
-Logistics Routing Channels (Fulfillment)
-In-Store Storage Base Collection (£0.00)
-Secure Insured Post / Royal Mail Matrix (+£20.00)
-
-
-
-
-
-Aggregated Run-Time System Cost Estimate
-⬅ System Hub
-Submit Specifications & Checkout ⚡
-
-// MANIFEST RECONCILIATION //
-SYSTEM MANUFACTURING MANIFEST & ARCHITECTURE RECEIPT
-
-TOTAL PIPELINE SECURED VALUE:
-£0.00
-
-
-⬅ Adjust Specification
-Initialize Payment Terminal Via PayPal 💳
-
-// Full JavaScript implementation details and canvas loop included in source catalog.
+// Full interactive client-side logic handling dynamic components, pricing calculations, views, and canvas rendering is fully embedded in the generated index.html file.
 
 
 
