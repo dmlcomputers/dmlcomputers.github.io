@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DML Computers | Custom PC Boutiques & Linux Workstations</title>
+    <title>DML Computers | Premium Custom PC Boutique & Linux Workstations</title>
     <style>
         :root {
             --bg-dark: #06090e;
@@ -41,12 +41,11 @@
         @media (max-width: 650px) { .input-row { grid-template-columns: 1fr; gap: 1.2rem; } }
         .field-block { display: flex; flex-direction: column; margin-bottom: 1.5rem; }
         .field-block label { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; color: var(--text-gray); margin-bottom: 0.5rem; }
-        .field-block input, .field-block textarea { background-color: var(--input-bg); border: 1px solid #30363d; border-radius: 6px; padding: 1rem; color: var(--text-light); font-size: 1rem; font-family: inherit; }
-        .field-block input:focus, .field-block textarea:focus { outline: none; border-color: var(--accent-glow); }
+        .field-block input, .field-block textarea, .field-block select { background-color: var(--input-bg); border: 1px solid #30363d; border-radius: 6px; padding: 1rem; color: var(--text-light); font-size: 1rem; font-family: inherit; }
+        .field-block input:focus, .field-block textarea:focus, .field-block select:focus { outline: none; border-color: var(--accent-glow); }
         .field-block input[readonly] { color: var(--accent-success); font-weight: bold; background-color: #0d1117; border-color: var(--border-color); }
         .submit-trigger { background: linear-gradient(180deg, #1f6feb 0%, #0e56c5 100%); border: 1px solid #388bfd; color: var(--text-light); padding: 1.3rem 2.5rem; font-size: 1.15rem; font-weight: 700; border-radius: 6px; cursor: pointer; width: 100%; box-shadow: 0 4px 15px rgba(14, 86, 197, 0.4); text-transform: uppercase; letter-spacing: 0.5px; }
         .submit-trigger:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(14, 86, 197, 0.6); background: linear-gradient(180deg, #388bfd 0%, #1f6feb 100%); }
-        footer { text-align: center; padding: 3rem; color: var(--text-gray); border-top: 1px solid var(--border-color); background-color: #0d1117; }
     </style>
 </head>
 <body>
@@ -57,29 +56,20 @@
     </header>
     <div class="main-container">
         <h2>Select an Engineering Node</h2>
-        <p class="section-desc">Click any system tile below to configure prices and manifests including free UK postage.</p>
+        <p class="section-desc">Click a card below to select your service architecture baseline.</p>
         <div class="services-grid">
-            <div class="service-card" onclick="selectServiceModule('Hardware Diagnostic Trace', 45.00, 'DIAGNOSTIC TRACE REQUEST...')">
-                <div><span class="badge">Care Node</span><h3>Diagnostic & Parts Repair</h3><p>Component testing and repairs.</p></div>
-                <div class="card-bottom"><div class="price-text">£45.00 <span style="font-size:0.75rem; color:var(--text-gray);">/ hr</span></div><div class="action-label">Configure</div></div>
+            <!-- Option 1: Hardware Only Base Configuration -->
+            <div class="service-card" onclick="selectServiceModule('Custom Workstation Build (Hardware Only)', 200.00, 'HARDWARE SCHEMATIC:\n- Motherboard: \n- CPU: \n- GPU: \n- RAM: \n- Storage: \n- PSU: \n- Case: ', true)">
+                <div><span class="badge">Hardware Only</span><h3>Custom Workstation Build</h3><p>Complete component assembly, physical wire design, and stress testing. Excludes Operating System.</p></div>
+                <div class="card-bottom"><div class="price-text">From £200.00</div><div class="action-label">Configure</div></div>
             </div>
-            <div class="service-card" onclick="selectServiceModule('Linux OS System Deployment', 65.00, 'LINUX BLUEPRINT...')">
-                <div><span class="badge badge-linux">Linux OS Node</span><h3>Linux Architecture Setup</h3><p>Clean Linux installation and kernel optimization.</p></div>
-                <div class="card-bottom"><div class="price-text">£65.00</div><div class="action-label">Configure</div></div>
-            </div>
-            <div class="service-card" onclick="selectServiceModule('Standard Custom Machine Build', 95.00, 'BASE BUILD...')">
-                <div><span class="badge">Standard Assembly</span><h3>Custom Base Build</h3><p>Hardware assembly and stability testing.</p></div>
-                <div class="card-bottom"><div class="price-text">£95.00</div><div class="action-label">Configure</div></div>
-            </div>
-            <div class="service-card" onclick="selectServiceModule('Mid-Tier Pro System Build', 190.00, 'PRO FRAMEWORK...')">
-                <div><span class="badge">Pro Framework</span><h3>Mid-Tier Pro Build</h3><p>Advanced system design and tuning.</p></div>
-                <div class="card-bottom"><div class="price-text">£190.00</div><div class="action-label">Configure</div></div>
-            </div>
-            <div class="service-card" onclick="selectServiceModule('Elite High-End Machine Build', 260.00, 'ELITE SCHEMATIC...')">
-                <div><span class="badge">Elite Overhaul</span><h3>Elite High-End Build</h3><p>Top-tier components and custom loops.</p></div>
-                <div class="card-bottom"><div class="price-text">£260.00</div><div class="action-label">Configure</div></div>
+            <!-- Option 2: Full Linux Installed Workstation -->
+            <div class="service-card" onclick="selectServiceModule('Custom Workstation Build (Linux Installed)', 265.00, 'HARDWARE & LINUX ENVIRONMENT SCHEMATIC:\n- Motherboard: \n- CPU: \n- GPU: \n- RAM: \n- Storage: \n- Base Linux OS Distribution: \n- Desktop Interface: ', false)">
+                <div><span class="badge badge-linux">OS Loaded</span><h3>Linux Machine Build</h3><p>Complete premium hardware assembly bundled with custom Linux environment installation and kernel setup.</p></div>
+                <div class="card-bottom"><div class="price-text">From £265.00</div><div class="action-label">Configure</div></div>
             </div>
         </div>
+
         <h2>Secure Terminal Checkout</h2>
         <div class="order-panel" id="order-form-block">
             <div class="input-row">
@@ -87,44 +77,69 @@
                 <div class="field-block"><label for="user-email">Your Contact Email</label><input type="email" id="user-email" placeholder="name@example.com" required></div>
             </div>
             <div class="input-row">
+                <div class="field-block">
+                    <label for="shipping-method">Fulfillment / Shipping Method</label>
+                    <select id="shipping-method" onchange="recalculateTotalCost()">
+                        <option value="collection">Local Collection (£0.00 Delivery)</option>
+                        <option value="posted">Secure Tracked Insured Postage (+£20.00 Delivery)</option>
+                    </select>
+                </div>
+                <div class="field-block"><label for="allocated-price-display">Total Service Price (Inc. Choice Options)</label><input type="text" id="allocated-price-display" value="Select a service card above..." readonly></div>
+            </div>
+            <div class="input-row">
                 <div class="field-block"><label for="generated-order-id">Generated Tracking Order ID</label><input type="text" id="generated-order-id" readonly></div>
-                <div class="field-block"><label for="allocated-price-display">System Cost (Inc. UK Shipping)</label><input type="text" id="allocated-price-display" value="Select a service card..." readonly></div>
             </div>
             <div class="field-block">
-                <label for="user-specs">System Build Specs</label>
-                <textarea id="user-specs" rows="6" placeholder="Select a service above or enter manually..." required></textarea>
+                <label for="user-specs">System Build Specs & Component Manifest Details</label>
+                <textarea id="user-specs" rows="8" placeholder="Select a service node choice above to map custom layout lines..." required></textarea>
             </div>
-            <button type="button" class="submit-trigger" onclick="executePurchasePipeline()">Purchase & Send via PayPal</button>
+            <button type="button" class="submit-trigger" onclick="executePurchasePipeline()">Purchase via PayPal & Launch Ticket Email</button>
         </div>
     </div>
-    <footer><p>&copy; 2026 DML Computers. Linux Workstations. Secured via PayPal.</p></footer>
+    <footer><p>&copy; 2026 DML Computers. All builds processed via secure PayPal pipelines.</p></footer>
+
     <script>
-        let activePriceTracker = 0.00;
+        let baseServicePrice = 0.00;
+        let isHardwareOnlyNode = true;
         let activeServiceTitle = "";
+
         function generateTrackingToken() {
             const today = new Date();
             const dateCode = today.getFullYear().toString().substring(2) + (today.getMonth() + 1).toString().padStart(2, '0') + today.getDate().toString().padStart(2, '0');
             document.getElementById("generated-order-id").value = `DML-${dateCode}-${Math.floor(1000 + Math.random() * 9000)}`;
         }
         generateTrackingToken();
-        function selectServiceModule(title, price, blueprint) {
-            activePriceTracker = price;
+
+        function selectServiceModule(title, price, blueprint, isHardwareOnly) {
+            baseServicePrice = price;
+            isHardwareOnlyNode = isHardwareOnly;
+            activeServiceTitle = title;
+            document.getElementById("user-specs").value = `SERVICE MODULE: ${title.toUpperCase()}\n=========================================\n${blueprint}`;
 Use code with caution.
-activeServiceTitle = title;
-document.getElementById("user-specs").value = SERVICE: ${title}\n${blueprint};
-document.getElementById("allocated-price-display").value = £${price.toFixed(2)} (Delivery Included);
+recalculateTotalCost();
 document.getElementById("order-form-block").scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+function recalculateTotalCost() {
+if (baseServicePrice === 0) return;
+const shippingType = document.getElementById("shipping-method").value;
+let finalCalculatedPrice = baseServicePrice;
+if (shippingType === "posted") {
+finalCalculatedPrice += 20.00; // Adds the exact postage delta configuration automatically
+}
+document.getElementById("allocated-price-display").value = £${finalCalculatedPrice.toFixed(2)};
 }
 function executePurchasePipeline() {
 const name = document.getElementById("user-name").value.trim();
 const email = document.getElementById("user-email").value.trim();
 const specsData = document.getElementById("user-specs").value.trim();
 const trackingId = document.getElementById("generated-order-id").value;
-if (!name || !email || !specsData || activePriceTracker === 0.00) {
-alert("Please fill out name, email, and select a service node.");
+const finalPriceText = document.getElementById("allocated-price-display").value;
+const shippingType = document.getElementById("shipping-method").value;
+if (!name || !email || !specsData || baseServicePrice === 0) {
+alert("Access Blocked: Please enter your details and choose a service node.");
 return;
 }
-window.location.href = mailto:dlester626@://gmail.com{encodeURIComponent(trackingId)}&body=${encodeURIComponent(specsData)};
-window.open(https://paypal.com{activePriceTracker.toFixed(2)}, '_blank');
+let computedPriceVal = baseServicePrice + (shippingType === "posted" ? 20.00 : 0);
+window.location.href = mailto:dlester626@://gmail.com{encodeURIComponent(\({trackingId} - Service Request [\){name}])}&body=${encodeURIComponent(Order ID: {trackingId}\nCost:{finalPriceText})};
+window.open(https://paypal.com{computedPriceVal.toFixed(2)}, '_blank');
 }
-
