@@ -3,71 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DML Computers | Premium Custom PC Boutique & Technical Architecture</title>
+    <title>DML Computers | Custom Workstations & Linux Architecture</title>
     <style>
         :root {
             --bg-dark: #06090e;
             --panel-bg: #0d1117;
-            --accent-glow: #0071e3;
-            --accent-success: #30d5c8;
+            --accent-glow: #0071e3; /* Premium Blue */
+            --accent-success: #30d5c8; /* Mint Turquoise */
             --text-light: #ffffff;
             --text-gray: #8b949e;
             --border-color: #21262d;
             --input-bg: #161b22;
         }
-        * { box-sizing: border-box; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+        * { box-sizing: border-box; transition: all 0.2s ease-in-out; }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: var(--bg-dark); color: var(--text-light); margin: 0; padding: 0; line-height: 1.6; }
         header { text-align: center; padding: 4rem 2rem; background: linear-gradient(180deg, #161b22 0%, var(--bg-dark) 100%); border-bottom: 1px solid var(--border-color); }
-        .logo-img { max-height: 120px; width: auto; border-radius: 8px; box-shadow: 0 0 30px rgba(0, 113, 227, 0.25); border: 2px solid var(--accent-glow); padding: 0.5rem; background: var(--panel-bg); }
-        h1 { font-size: 3rem; font-weight: 800; margin: 0; background: linear-gradient(120deg, #ffffff 40%, #58a6ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .main-container { max-width: 1050px; width: 92%; margin: 3rem auto; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
-        .service-card { background-color: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 2.2rem; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; }
-        .service-card:hover { transform: translateY(-5px); border-color: var(--accent-glow); }
-        .badge { font-size: 0.75xl; font-weight: 700; text-transform: uppercase; color: var(--accent-glow); background: rgba(0, 113, 227, 0.1); padding: 0.3rem 0.8rem; border-radius: 20px; display: inline-block; margin-bottom: 1.2rem; }
-        .card-bottom { margin-top: 2rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 1.2rem; }
-        .price-text { font-size: 1.5rem; font-weight: 800; color: var(--accent-success); }
-        .order-panel { background-color: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 2.5rem; margin-bottom: 5rem; }
+        .logo-box { margin-bottom: 1.5rem; }
+        .logo-img { max-height: 110px; width: auto; border-radius: 8px; box-shadow: 0 0 30px rgba(0, 113, 227, 0.25); border: 2px solid var(--accent-glow); padding: 0.5rem; background: var(--panel-bg); }
+        h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -0.5px; margin: 0; background: linear-gradient(120deg, #ffffff 40%, #58a6ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        header p { color: var(--text-gray); font-size: 1.1rem; margin-top: 0.5rem; }
+        .main-container { max-width: 1100px; width: 92%; margin: 3rem auto; }
+        h2 { font-size: 1.8rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 3rem; margin-bottom: 0.5rem; color: var(--text-light); }
+        .section-desc { color: var(--text-gray); margin-top: 0; margin-bottom: 2rem; font-size: 1.05rem; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+        .service-card { background-color: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+        .service-card:hover { transform: translateY(-4px); border-color: var(--accent-glow); box-shadow: 0 8px 30px rgba(0, 113, 227, 0.25); }
+        .badge { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--accent-glow); background: rgba(0, 113, 227, 0.1); padding: 0.3rem 0.7rem; border-radius: 20px; display: inline-block; margin-bottom: 1rem; border: 1px solid rgba(0, 113, 227, 0.2); }
+        .badge-cheap { color: var(--accent-success); background: rgba(48, 213, 200, 0.1); border-color: rgba(48, 213, 200, 0.2); }
+        .service-card h3 { margin: 0 0 0.8rem 0; font-size: 1.35rem; font-weight: 700; }
+        .service-card p { color: #c9d1d9; margin: 0; font-size: 0.95rem; line-height: 1.5; }
+        .card-bottom { margin-top: 2rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #21262d; padding-top: 1.2rem; }
+        .price-text { font-size: 1.4rem; font-weight: 800; color: var(--accent-success); }
+        .action-label { font-size: 0.85rem; font-weight: 600; color: var(--accent-glow); background: rgba(255,255,255,0.03); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid #21262d; }
+        .service-card:hover .action-label { background: var(--accent-glow); color: var(--text-light); border-color: var(--accent-glow); }
+        .order-panel { background-color: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 2.5rem; margin-bottom: 5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+        @media (max-width: 650px) { .input-row { grid-template-columns: 1fr; gap: 1.2rem; } }
         .field-block { display: flex; flex-direction: column; margin-bottom: 1.5rem; }
-        .field-block input, .field-block textarea { background-color: var(--input-bg); border: 1px solid #30363d; border-radius: 6px; padding: 1rem; color: var(--text-light); font-size: 1rem; }
-        .submit-trigger { background: linear-gradient(180deg, #1f6feb 0%, #0e56c5 100%); border: 1px solid #388bfd; color: var(--text-light); padding: 1.3rem 2.5rem; font-size: 1.15rem; font-weight: 700; border-radius: 6px; cursor: pointer; width: 100%; text-transform: uppercase; }
-        footer { text-align: center; padding: 3rem; color: var(--text-gray); border-top: 1px solid var(--border-color); background-color: #0d1117; }
+        .field-block label { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; color: var(--text-gray); margin-bottom: 0.5rem; }
+        .field-block input, .field-block textarea { background-color: var(--input-bg); border: 1px solid #30363d; border-radius: 6px; padding: 0.9rem; color: var(--text-light); font-size: 1rem; font-family: inherit; }
+        .field-block input:focus, .field-block textarea:focus { outline: none; border-color: var(--accent-glow); }
+        .field-block input[readonly] { color: var(--accent-success); font-weight: bold; background-color: #0d1117; }
+        .submit-trigger { background: linear-gradient(180deg, #1f6feb 0%, #0e56c5 100%); border: 1px solid #388bfd; color: var(--text-light); padding: 1.2rem 2.5rem; font-size: 1.1rem; font-weight: 700; border-radius: 6px; cursor: pointer; width: 100%; box-shadow: 0 4px 15px rgba(14, 86, 197, 0.4); text-transform: uppercase; letter-spacing: 0.5px; }
+        .submit-trigger:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(14, 86, 197, 0.6); background: linear-gradient(180deg, #388bfd 0%, #1f6feb 100%); }
+        footer { text-align: center; padding: 3rem; color: var(--text-gray); font-size: 0.9rem; border-top: 1px solid #21262d; background-color: #0d1117; }
     </style>
 </head>
 <body>
+
     <header>
-        <div class="logo-box"><img src="logo.png" alt="DML Logo" class="logo-img"></div>
+        <div class="logo-box">
+            <img src="logo.png" alt="DML Computers Logo" class="logo-img">
+        </div>
         <h1>DML COMPUTERS</h1>
-        <p>Premium Custom Systems // Certified Hardware Engineering</p>
+        <p>Premium System Configurations, Linux Deployments & Budget Hardware Services</p>
     </header>
+
     <div class="main-container">
+        
         <h2>Select a Custom Configuration Service</h2>
+        <p class="section-desc">Click any card below. The checkout form will instantly lock in the service, set the price, and generate a pre-formatted specifications template.</p>
+
         <div class="services-grid">
-            <div class="service-card" onclick="applyServiceModule('Custom Workstation Deployment', 95.00, 'BUILD SPEC...')">
-                <div><span class="badge">Hardware Assembly</span><h3>Custom Workstation Build</h3><p>Complete multi-component staging and testing.</p></div>
-                <div class="card-bottom"><div class="price-text">£95.00</div></div>
+            <!-- Workstation Card -->
+            <div class="service-card" onclick="selectService('Custom Workstation Build', 95.00, 'HARDWARE SCHEMATIC:\\n- Motherboard: \\n- Processor (CPU): \\n- Graphics (GPU): \\n- Memory (RAM): \\n- Storage (NVMe/SSD): \\n- PSU: \\n- Case: ')">
+                <div>
+                    <span class="badge">Hardware Assembly</span>
+                    <h3>Custom Workstation Build</h3>
+                    <p>Complete multi-component workstation assembly, strategic layout cable routing optimization, cooling airflow design, and core bios tuning metrics.</p>
+                </div>
+                <div class="card-bottom">
+                    <div class="price-text">£95.00</div>
+                    <div class="action-label">Select Service</div>
+                </div>
+            </div>
+
+            <!-- Linux System Card -->
+            <div class="service-card" onclick="selectService('Linux Only Architecture Setup', 65.00, 'LINUX PLATFORM BLUEPRINT:\\n- Target Distribution (e.g., Arch Linux): \\n- Desktop Environment: \\n- Partition Schema Layout: \\n- Custom System Packages Required: ')">
+                <div>
+                    <span class="badge">Operating System</span>
+                    <h3>Linux Architecture Setup</h3>
+                    <p>Deployment of dedicated Linux-only environments. Optimized system partitioning, custom kernel parameters adjustments, environment setups, and full drive arrays formatting.</p>
+                </div>
+                <div class="card-bottom">
+                    <div class="price-text">£65.00</div>
+                    <div class="action-label">Select Service</div>
+                </div>
+            </div>
+
+            <!-- Budget Card -->
+            <div class="service-card" onclick="selectService('Budget Tune-Up & Assessment', 25.00, 'BUDGET TUNE-UP SPECS:\\n- Operating System Status: \\n- Primary Device Performance Issue: \\n- Current Component Cleaning Requests: ')">
+                <div>
+                    <span class="badge badge-cheap">Budget Economy Option</span>
+                    <h3>System Tune-Up & Check</h3>
+                    <p>Affordable hardware assessment. Physical casing dust removal cleanouts, thermal monitoring optimization diagnostics, and clean startup storage optimization tracking cascades.</p>
+                </div>
+                <div class="card-bottom">
+                    <div class="price-text">£25.00</div>
+                    <div class="action-label">Select Service</div>
+                </div>
             </div>
         </div>
-        <h2>Configure & Launch Secure Request</h2>
-        <div class="order-panel">
-            <div class="field-block"><label>Name</label><input type="text" id="user-name" required></div>
-            <div class="field-block"><label>Email</label><input type="email" id="user-email" required></div>
-            <div class="field-block"><label>Specs</label><textarea id="user-specs" rows="6" required></textarea></div>
-            <button type="button" class="submit-trigger" onclick="processPurchaseSequence()">Process Order</button>
-        </div>
-    </div>
-    <footer><p>&copy; 2026 DML Computers.</p></footer>
-    <script>
-        let rawNumericalPrice = 95.00;
-        function applyServiceModule(title, cost, blueprint) {
-            document.getElementById("user-specs").value = `${title}\n${blueprint}`;
-        }
-        function processPurchaseSequence() {
-            const name = document.getElementById("user-name").value;
-            const email = document.getElementById("user-email").value;
-            window.location.href = `mailto:dlester626@://gmail.com{name} (${email})`;
-            window.open(`https://paypal.com{rawNumericalPrice.toFixed(2)}`, '_blank');
-        }
-    </script>
-</body>
-</html>
+
+        <h2>Configure & Launch Service Request</h2>
+        <div class="order-panel" id="order-form-block">
+            
+            <div class="input-row">
+                <div class="field-block">
+                    <label for="user-name">Your Full Name</label>
+                    <input type="text" id="user-name" placeholder="David Lester" required>
+                </div>
+                <div class="field-block">
+                    <label for="user-email">Your Email Address</label>
+                    <input type="email" id="user-email" placeholder="name@example.com" required>
+                </div>
+            </div>
+
+            <div class="input-row">
+                <div class="field-block">
+                    <label for="order-id-display">Generated Order Tracking Reference ID</label>
+                    <input type="text" id="order-id-display" readonly>
+                </div>
+                <div class="field-block">
+                    <label for="order-price-display">Total Service Price (Includes Secure UK Postage)</label>
+                    <input type="text" id="order-price-display" value="£95.00 (Includes Insured UK Postage)" readonly>
+                </div>
+            </div>
+
+            <div class="field-block">
+                <label for="user-specs">System Build Specs / Hardware Manifest Details</label>
