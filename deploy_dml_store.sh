@@ -354,5 +354,5 @@ echo "🚀 Step 5: Syncing project core elements directly with GitHub Pages depl
 git push origin main --force
 echo "======================================================================"
 echo "✨ SYSTEM IS FULLY REBUILT AND OPERATIONAL!"
-echo "👉 View the deployment live at: github.io"
+echo "👉 View the deployment live at: https://github.io"
 echo "======================================================================"
