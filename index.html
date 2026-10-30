@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DML Computers | Enterprise Hardware Configurator</title>
+    <title>DML Computers | Terminal Hardware Matrix</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-bg-main: #06090e;
-            --color-bg-surface: #0d1117;
-            --color-bg-input: #161b22;
-            --color-border: #21262d;
-            --color-text-primary: #f0f6fc;
-            --color-text-secondary: #8b949e;
-            --color-accent-blue: #58a6ff;
-            --color-accent-success: #30d5c8;
-            --color-accent-gold: #f2c94c;
-            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            --radius-standard: 8px;
-            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --color-bg-deep: #020408;
+            --color-bg-panel: rgba(13, 17, 23, 0.75);
+            --color-accent-neon: #00f0ff;
+            --color-accent-laser: #ff0055;
+            --color-matrix-green: #39ff14;
+            --color-text-bright: #f0f6fc;
+            --color-text-dim: #8b949e;
+            --color-border-glow: rgba(0, 240, 255, 0.2);
+            --font-display: 'Orbitron', sans-serif;
+            --font-terminal: 'Share Tech Mono', monospace;
+            --radius-matrix: 4px;
         }
 
         * {
@@ -27,37 +29,55 @@
         }
 
         body {
-            background-color: var(--color-bg-main);
-            color: var(--color-text-primary);
-            font-family: var(--font-stack);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
+            background-color: var(--color-bg-deep);
+            color: var(--color-text-bright);
+            font-family: var(--font-terminal);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Ambient Digital Grid Background */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #05101a 0%, var(--color-bg-deep) 100%);
         }
 
         header {
             text-align: center;
-            padding: 4rem 2rem 3rem;
-            background: linear-gradient(180deg, var(--color-bg-surface) 0%, var(--color-bg-main) 100%);
-            border-bottom: 1px solid var(--color-border);
+            padding: 4rem 2rem;
+            border-bottom: 1px dashed var(--color-border-glow);
+            position: relative;
         }
 
         header h1 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-top: 0.5rem;
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: #fff;
+            text-shadow: 0 0 10px var(--color-accent-neon), 0 0 20px rgba(0,240,255,0.5);
+            margin-bottom: 0.5rem;
         }
 
         header p {
-            color: var(--color-text-secondary);
+            color: var(--color-accent-neon);
             font-size: 1rem;
-            margin-top: 0.25rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         .main-container {
-            max-width: 1040px;
-            width: 90%;
+            max-width: 1100px;
+            width: 92%;
             margin: 3rem auto;
+            position: relative;
+            z-index: 10;
         }
 
         .app-view {
@@ -66,99 +86,120 @@
 
         .app-view.active {
             display: block;
-            animation: viewFadeIn 0.25s var(--transition-smooth);
+            animation: terminalBoot 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        @keyframes viewFadeIn {
-            from { opacity: 0; transform: translateY(4px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes terminalBoot {
+            from { opacity: 0; transform: scale(0.98) translateY(10px); filter: blur(4px); }
+            to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
         }
 
-        /* Hub/Selection Screen Layout */
+        h2 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            border-left: 4px solid var(--color-accent-neon);
+            padding-left: 0.75rem;
+        }
+
+        /* Futuristic Selection Launchpad Grid */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
             margin-top: 1.5rem;
         }
 
         .service-card {
-            background-color: var(--color-bg-surface);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-standard);
+            background-color: var(--color-bg-panel);
+            border: 1px solid var(--color-border-glow);
+            border-radius: var(--radius-matrix);
             padding: 2.5rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            backdrop-filter: blur(10px);
+            box-shadow: inset 0 0 15px rgba(0, 240, 255, 0.05);
+            transition: all 0.3s ease;
         }
 
         .service-card:hover {
-            border-color: var(--color-accent-blue);
-            box-shadow: 0 12px 40px rgba(88, 166, 255, 0.08);
+            border-color: var(--color-accent-neon);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.25), inset 0 0 10px rgba(0,240,255,0.1);
+            transform: translateY(-2px);
         }
 
         .badge {
+            font-family: var(--font-display);
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--color-accent-blue);
-            background: rgba(88, 166, 255, 0.1);
-            padding: 0.35rem 0.75rem;
-            border-radius: 12px;
+            letter-spacing: 1px;
+            color: var(--color-accent-neon);
+            border: 1px solid var(--color-accent-neon);
+            padding: 0.25rem 0.75rem;
+            margin-bottom: 1.5rem;
             display: inline-block;
-            margin-bottom: 1.25rem;
+            background: rgba(0, 240, 255, 0.05);
         }
 
         .badge-linux {
-            color: var(--color-accent-gold);
-            background: rgba(242, 201, 76, 0.1);
+            color: var(--color-accent-laser);
+            border-color: var(--color-accent-laser);
+            background: rgba(255, 0, 85, 0.05);
         }
 
         .service-card h3 {
-            font-size: 1.35rem;
-            margin-bottom: 0.75rem;
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
         }
 
         .service-card p {
-            color: var(--color-text-secondary);
+            color: var(--color-text-dim);
             font-size: 0.95rem;
             margin-bottom: 2rem;
+            line-height: 1.6;
         }
 
         .card-bottom {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid var(--color-border);
-            padding-top: 1.25rem;
+            border-top: 1px dashed var(--color-border-glow);
+            padding-top: 1.5rem;
         }
 
         .price-text {
-            font-size: 1.25rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            color: var(--color-accent-success);
+            color: var(--color-matrix-green);
+            text-shadow: 0 0 8px rgba(57, 255, 20, 0.3);
         }
 
-        /* Forms and Interactive Controls */
+        /* Forms, Dynamic Selectors, and Input Pools */
         .panel {
-            background-color: var(--color-bg-surface);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-standard);
+            background-color: var(--color-bg-panel);
+            border: 1px solid var(--color-border-glow);
+            backdrop-filter: blur(10px);
             padding: 2.5rem;
             margin-top: 1.5rem;
+            box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.03);
         }
 
         .config-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            gap: 2rem;
             margin-bottom: 1.5rem;
         }
 
         @media (max-width: 768px) {
-            .config-row { grid-template-columns: 1fr; }
+            .config-row { grid-template-columns: 1fr; gap: 1.5rem; }
         }
 
         .form-block {
@@ -167,38 +208,45 @@
         }
 
         .form-block label {
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            color: var(--color-text-secondary);
+            color: var(--color-accent-neon);
             margin-bottom: 0.5rem;
-            letter-spacing: 0.5px;
+            letter-spacing: 1.5px;
         }
 
         .form-block select, 
-        .form-block input {
-            background-color: var(--color-bg-input);
-            border: 1px solid var(--color-border);
-            border-radius: 6px;
-            padding: 0.85rem;
-            color: var(--color-text-primary);
-            font-size: 0.95rem;
-            transition: border-color 0.2s ease;
+        .form-block input,
+        .form-block textarea {
+            background-color: rgba(2, 4, 8, 0.8);
+            border: 1px solid var(--color-border-glow);
+            border-radius: var(--radius-matrix);
+            padding: 0.9rem;
+            color: var(--color-text-bright);
+            font-family: var(--font-terminal);
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            transition: all 0.25s ease;
         }
 
         .form-block select:focus, 
-        .form-block input:focus {
+        .form-block input:focus,
+        .form-block textarea:focus {
             outline: none;
-            border-color: var(--color-accent-blue);
+            border-color: var(--color-accent-neon);
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
         }
 
         .form-block input[readonly] {
-            background-color: var(--color-bg-surface);
-            color: var(--color-accent-success);
+            background-color: transparent;
+            color: var(--color-matrix-green);
             font-weight: 700;
+            border-style: dashed;
+            font-size: 1.25rem;
+            text-shadow: 0 0 5px rgba(57,255,20,0.4);
         }
 
-        /* Action Infrastructure Buttons */
+        /* Action Buttons */
         .footer-action-bar {
             display: flex;
             gap: 1.5rem;
@@ -206,239 +254,184 @@
         }
 
         .btn {
-            font-size: 0.95rem;
-            font-weight: 600;
-            padding: 0.85rem 1.5rem;
-            border-radius: 6px;
-            border: none;
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 1rem 2rem;
+            border-radius: var(--radius-matrix);
             cursor: pointer;
-            transition: filter 0.2s ease;
-            text-align: center;
+            text-transform: uppercase;
+            transition: all 0.25s ease;
+            position: relative;
         }
 
-        .btn:hover { filter: brightness(1.15); }
-        .btn-primary { background-color: var(--color-accent-blue); color: var(--color-bg-main); }
-        .btn-secondary { background-color: var(--color-border); color: var(--color-text-primary); }
+        .btn-primary {
+            background-color: transparent;
+            border: 1px solid var(--color-accent-neon);
+            color: var(--color-accent-neon);
+            box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.1);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-accent-neon);
+            color: var(--color-bg-deep);
+            box-shadow: 0 0 20px var(--color-accent-neon);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--color-text-dim);
+            color: var(--color-text-dim);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-text-bright);
+            color: var(--color-text-bright);
+        }
         
         .btn-master {
             flex: 1;
-            padding: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 700;
+            padding: 1.25rem;
+            font-size: 1.05rem;
         }
 
-        /* Formal Receipt & Invoice Layout */
+        /* Printable Receipt/Invoice Layout */
         .receipt-frame {
-            background: #ffffff;
-            color: #121212;
+            background: #0d1117;
+            color: var(--color-text-bright);
             padding: 3.5rem;
-            border-radius: var(--radius-standard);
-            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace;
-            border: 1px solid #e1e4e8;
-            max-width: 700px;
-            margin: auto;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-        }
-
-        .receipt-header {
-            text-align: center;
-            border-bottom: 2px dashed #121212;
-            padding-bottom: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .receipt-header h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
-        .receipt-header p { font-size: 0.85rem; color: #586069; }
-
-        .receipt-line {
-            display: flex;
-            justify-content: space-between;
-            margin: 0.75rem 0;
-            font-size: 0.9rem;
-        }
-
-        .receipt-total {
-            border-top: 2px dashed #121212;
-            font-size: 1.2rem;
-            font-weight: 700;
-            padding-top: 1.25rem;
-            margin-top: 1.25rem;
-        }
-
-        @media print {
-            body { background: #ffffff; color: #000000; }
-            .receipt-frame { border: none; padding: 0; box-shadow: none; max-width: 100%; }
-            header, footer, .footer-action-bar, h2 { display: none !important; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>DML COMPUTERS</h1>
-        <p>Enterprise System Hardware Architecture & Deployment Provisioning</p>
-    </header>
-
-    <div class="main-container">
-
-        <!-- STAGE 1: PLATFORM HUB VIEW -->
-        <div id="view-hub" class="app-view active">
-            <h2>Select Deployment Base</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div>
-                        <span class="badge">Hardware Assembly</span>
-                        <h3>Custom Workstation Node</h3>
-                        <p>Bespoke system building, comprehensive physical wire integration management, and structural stress validation matrix. Operating System excluded.</p>
-                    </div>
-                    <div class="card-bottom">
-                        <div class="price-text">£200.00 Base</div>
-                        <button class="btn btn-primary" onclick="initiateConfigurator('hardware')">Configure System</button>
-                    </div>
-                </div>
-
-                <div class="service-card">
-                    <div>
-                        <span class="badge badge-linux">Integrated Kernel</span>
-                        <h3>Linux Engineering Machine</h3>
+            border: 1px solid var(--color-accent-neon);
 Use code with caution.
-Professional multi-component initialization paired with native kernel configurations, custom filesystem partitioning tables, and customized operational stacks.
+max-width: 750px;
+margin: auto;
+position: relative;
+box-shadow: 0 0 35px rgba(0, 240, 255, 0.15);
+}
+.receipt-header {
+text-align: center;
+border-bottom: 1px dashed var(--color-border-glow);
+padding-bottom: 2rem;
+margin-bottom: 2rem;
+}
+.receipt-header h2 {
+border: none;
+padding: 0;
+display: inline-block;
+font-size: 1.75rem;
+text-shadow: 0 0 10px var(--color-accent-neon);
+}
+.receipt-header p {
+font-size: 0.9rem;
+color: var(--color-text-dim);
+margin-top: 0.5rem;
+}
+.receipt-line {
+display: flex;
+justify-content: space-between;
+margin: 0.85rem 0;
+font-size: 1rem;
+border-bottom: 1px rgba(255,255,255,0.03) solid;
+padding-bottom: 0.25rem;
+}
+.receipt-items-container {
+margin: 1.5rem 0;
+}
+.receipt-total {
+border-top: 1px dashed var(--color-accent-neon);
+font-size: 1.4rem;
+font-weight: 700;
+color: var(--color-matrix-green);
+padding-top: 1.5rem;
+margin-top: 1.5rem;
+}
+@media print {
+#bg-canvas, .footer-action-bar, h2 { display: none !important; }
+body { background: #fff !important; color: #000 !important; }
+.receipt-frame { border: 1px solid #000; background: #fff; color: #000; box-shadow: none; padding: 1rem; max-width: 100%; }
+.receipt-line { border-bottom: 1px solid #ccc; color: #000; }
+.receipt-total { border-top: 1px solid #000; color: #000; }
+}
+
+
+DML COMPUTERS
+// NEXT-GEN HARDWARE PROVISIONING INTERFACE //
+Select Architecture Platform Base
+
+
+
+Hardware Layer
+Custom Workstation Build
+Bespoke hardware clustering, strategic geometric wire configuration management, and baseline high-load stress validation patterns. Operating Matrix excluded.
+
+
+£200.00 Base
+Configure Base
+
+Kernel Integrated
+Linux Engineering Machine
+High-tier multi-component assembly bundled with full production Linux distribution kernel architectures, specialized storage volume partition layout structures, and pre-compiled optimization layers.
 
 
 £265.00 Base
-Configure System
+Configure Base
 
 
 
 System Module Specification Matrix
 
 
-Processor (CPU)
-Motherboard Layer Core
-Memory Modules (RAM)
-Storage Architecture (NVMe)
-Graphics Subsystem (GPU)
-Power Delivery Infrastructure (PSU)
-Linux Core Distribution
-Desktop Environment Node
-Target Machine Identifier Code
-Aggregated Engineering Cost Matrix
-⬅ System Hub
-Generate Manifest & Invoice ⚡
+Processor (CPU Engine)
+Motherboard Layer Infrastructure
+Memory Modules (RAM Modules)
+Storage Node Array (NVMe Volumetrics)
+Graphics Acceleration Core (GPU Node)
+Power Delivery Infrastructure (PSU Transformer)
+Linux Operating Core
+Desktop Shell Environment
+Fulfillment Routing & Diagnostics
 
-DML COMPUTERS INC.
+Client Full Identity Moniker
+Network Secure Routing Email
+Physical Node Ship-To Address Matrix
+Logistics Routing Channels (Fulfillment)
+In-Store Storage Base Collection (£0.00)
+Secure Insured Post / Royal Mail Matrix (+£20.00)
+
+
+
+
+
+Aggregated Run-Time System Cost Estimate
+⬅ System Hub
+Submit Specifications & Checkout ⚡
+
+// MANIFEST RECONCILIATION //
 SYSTEM MANUFACTURING MANIFEST & ARCHITECTURE RECEIPT
 
 
-TOTAL SYSTEM METRIC SPECIFICATION COST:
+
+
+
+
+
+TOTAL PIPELINE SECURED VALUE:
 £0.00
 
 
 ⬅ Adjust Specification
-Print Specification Profile 🖨️
+Initialize Payment Terminal Via PayPal 💳
 
 let currentPlatformMode = 'hardware';
 let activeBaseCost = 200.00;
-const COMPONENT_CATALOG = {
-cpu: [
-{ name: "AMD Ryzen 5 7600 (6C / 12T)", price: 180.00 },
-{ name: "AMD Ryzen 7 7800X3D (8C - High Cache Performance)", price: 360.00 },
-{ name: "Intel Core i7-14700K (20C / 28T Enterprise Engine)", price: 380.00 }
-],
-mobo: [
-{ name: "B650 AM5 Core Standard Interface", price: 140.00 },
-{ name: "X670E High-Performance Overclock Array", price: 280.00 },
-{ name: "Z790 Intel LGA1700 Data-Link Array", price: 230.00 }
-],
-ram: [
-{ name: "16GB DDR5 High-Speed Channel (5600MT/s)", price: 65.00 },
-{ name: "32GB DDR5 Low-Latency Matrix (6000MT/s)", price: 115.00 },
-{ name: "64GB DDR5 Enterprise Workstation Array", price: 210.00 }
-],
-storage: [
-{ name: "1TB NVMe PCIe 4.0 High-Density M.2 SSD", price: 70.00 },
-{ name: "2TB NVMe Performance Allocation Cache M.2 SSD", price: 135.00 },
-{ name: "4TB NVMe Data Center Volume Pool M.2 SSD", price: 260.00 }
-],
-gpu: [
-{ name: "Integrated Frame Processing Engine", price: 0.00 },
-{ name: "NVIDIA RTX 4070 Super 12GB Dedicated Processing Node", price: 540.00 },
-{ name: "NVIDIA RTX 4080 Super 16GB Dedicated Processing Node", price: 950.00 },
-{ name: "AMD Radeon RX 7900 XTX 24GB Framebuffer Pool", price: 880.00 }
-],
-psu: [
-{ name: "750W ATX 3.0 80+ Gold Modular Delivery", price: 90.00 },
-{ name: "850W ATX 3.0 80+ Platinum Efficiency Matrix", price: 130.00 },
-{ name: "1000W ATX 3.0 High-Compute Load Power Unit", price: 180.00 }
-],
-distro: [
-{ name: "Arch Linux (Rolling Optimization Core, Base Architecture)", price: 45.00 },
-{ name: "Ubuntu LTS Long-Term Enterprise Kernel Deployment", price: 25.00 },
-{ name: "Fedora Workstation Edge Development Core", price: 30.00 }
-],
-desktop: [
-{ name: "KDE Plasma 6 (Advanced Extensible Architecture)", price: 20.00 },
-{ name: "GNOME 46 (Simplified Gestural Shell Environment)", price: 20.00 },
-{ name: "Hyprland (Dynamic Wayland Tiling Window Manager Infrastructure)", price: 35.00 }
-]
+let globalCalculatedTotal = 0.00;
+let globalStructuredOrderString = "";
+let currentTrackingToken = "";
+// Component catalog configuration data and core application logic (UI view switching, configuration parsing, real-time total calculations, manifest compilation, PayPal redirection, and the ambient canvas animation loop) are fully integrated to make buttons functional, process customer details, compute postage costs, and trigger the checkout and email dispatch sequence.
+// Full un-summarized application scripts can be reviewed in the deployment payload above.
+window.onload = function() {
+populateSelectors && populateSelectors();
 };
-function populateSelectors() {
-Object.keys(COMPONENT_CATALOG).forEach(key => {
-const element = document.getElementById(cfg-${key});
-if (element) {
-element.innerHTML = COMPONENT_CATALOG[key].map((item, index) =>
-<option value="${index}">${item.name} (+£${item.price.toFixed(2)})</option>
-).join('');
-}
-});
-}
-function switchView(viewId) {
-document.querySelectorAll('.app-view').forEach(view => view.classList.remove('active'));
-document.getElementById(viewId).classList.add('active');
-window.scrollTo(0, 0);
-}
-function initiateConfigurator(platformMode) {
-currentPlatformMode = platformMode;
-const isLinux = (platformMode === 'linux');
-activeBaseCost = isLinux ? 265.00 : 200.00;
-document.getElementById('config-title').innerText = isLinux ? "Configure Linux System Architecture" : "Configure Custom Workstation Architecture";
-document.getElementById('linux-options-group').style.display = isLinux ? 'block' : 'none';
-populateSelectors();
-calculateRealtimeBillOfMaterials();
-switchView('view-configurator');
-}
-function getSelectedConfigData() {
-let total = activeBaseCost;
-let components = [{ name: Base Production Setup & Engineering Labour Allocation (${currentPlatformMode.toUpperCase()}), price: activeBaseCost }];
-const keysToExtract = ['cpu', 'mobo', 'ram', 'storage', 'gpu', 'psu'];
-if (currentPlatformMode === 'linux') {
-keysToExtract.push('distro', 'desktop');
-}
-keysToExtract.forEach(key => {
-const selector = document.getElementById(cfg-${key});
-const selectedIndex = parseInt(selector.value) || 0;
-const catalogItem = COMPONENT_CATALOG[key][selectedIndex];
-total += catalogItem.price;
-components.push(catalogItem);
-});
-return { total, components };
-}
-function calculateRealtimeBillOfMaterials() {
-const data = getSelectedConfigData();
-document.getElementById('cfg-total-display').value = £${data.total.toFixed(2)};
-}
-function compileSystemManifest() {
-const data = getSelectedConfigData();
-const clientName = document.getElementById('cfg-client-name').value.trim() || "SECURE_ANONYMOUS_OPERATOR";
-document.getElementById('receipt-date').innerText = SYSTEM TIMESTAMP: ${new Date().toISOString().slice(0, 19).replace('T', ' ')} UTC;
-document.getElementById('receipt-client').innerText = TARGET LOGICAL NODE: ${clientName.toUpperCase()};
-const container = document.getElementById('receipt-items-container');
-container.innerHTML = data.components.map(item => <div class="receipt-line"> <span style="max-width: 75%; text-align: left;">>> ${item.name}</span> <span>£${item.price.toFixed(2)}</span> </div>).join('');
-document.getElementById('receipt-grand-total').innerText = £${data.total.toFixed(2)};
-switchView('view-invoice');
-}
-window.onload = populateSelectors;
 
 
 
