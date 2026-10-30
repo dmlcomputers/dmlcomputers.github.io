@@ -325,6 +325,6 @@ return;
 }
 const emailSubject = DML Computers Service Order Request - ${name};
 const emailBody = CLIENT CONTACT DETAILS\n---------------------\nClient Name: ${name}\nClient Email: ${email}\n\nTECHNICAL PARAMETERS & HARDWARE SPECIFICATIONS\n---------------------------------------------\n${specsData};
-const mailtoDestination = mailto:dlester626@://gmail.com{encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)};
-window.location.href = mailtoDestination;
+const mailtoDestination = `mailto:dlester626@://gmail.com{encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            window.location.href = mailtoDestination;
 }
