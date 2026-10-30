@@ -24,7 +24,6 @@
             line-height: 1.6;
         }
 
-        /* Modern Slick Glass Header */
         header {
             text-align: center;
             padding: 4rem 2rem;
@@ -83,7 +82,6 @@
             font-size: 1.05rem;
         }
 
-        /* Premium Slick Interactive Grid Layout */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -108,10 +106,6 @@
             transform: translateY(-4px);
             border-color: var(--accent-glow);
             box-shadow: 0 8px 30px rgba(0, 113, 227, 0.25);
-        }
-
-        .card-top {
-            position: relative;
         }
 
         .badge {
@@ -173,7 +167,6 @@
             border-color: var(--accent-glow);
         }
 
-        /* Clean Functional Request Engine Box */
         .order-panel {
             background-color: var(--panel-bg);
             border: 1px solid #21262d;
@@ -197,6 +190,7 @@
         .field-block {
             display: flex;
             flex-direction: column;
+            margin-bottom: 1.5rem;
         }
 
         .field-block label {
@@ -224,7 +218,6 @@
             border-color: var(--accent-glow);
         }
 
-        /* Big Instant Email Action Trigger */
         .submit-trigger {
             background: linear-gradient(180deg, #1f6feb 0%, #0e56c5 100%);
             border: 1px solid #388bfd;
@@ -247,10 +240,6 @@
             background: linear-gradient(180deg, #388bfd 0%, #1f6feb 100%);
         }
 
-        .submit-trigger:active {
-            transform: translateY(0);
-        }
-
         footer {
             text-align: center;
             padding: 3rem;
@@ -265,24 +254,23 @@
 
     <header>
         <div class="logo-box">
-            <img src="logo.png" alt="DML Computers Logo" class="logo-img">
+            <img src="logo.png" alt="DML Computers Logo" class="brand-logo logo-img">
         </div>
         <h1>DML COMPUTERS</h1>
-        <p>Premium Custom Systems & Certified Hardware Engineering</p>
+        <p>Premium Custom Workstations & Certified Hardware Architecture</p>
     </header>
 
     <div class="main-container">
         
         <h2>Select a Custom Configuration Service</h2>
-        <p class="section-desc">Choose an option below. The order system will instantly structure your build template parameters automatically.</p>
+        <p class="section-desc">Choose an option below. The order system will instantly pre-format your motherboard and CPU build parameters automatically.</p>
 
         <div class="services-grid">
-            <!-- Card 1: Custom Build Bundle -->
-            <div class="service-card" onclick="applyBuildTemplate('Custom High-Performance PC Build', 'CPU Target:\nMotherboard Model:\nGPU / Video Card:\nRAM Kit Size:\nStorage (SSD/NVMe):\nPower Supply Unit:\nPC Case / Chassis:')">
-                <div class="card-top">
+            <div class="service-card" onclick="applyBuildTemplate('Custom High-Performance PC Build', 'HARDWARE ALLOCATION SCHEMATIC:\\n- Motherboard Model: \\n- Processor (CPU): \\n- Graphic Array (GPU): \\n- Memory Kit (RAM Size): \\n- Storage Array (NVMe/SSD): \\n- Power Supply Unit: \\n- Computer Chassis / Case: ')">
+                <div>
                     <span class="badge">Hardware Assembly</span>
                     <h3>Custom Workstation Build</h3>
-                    <p>Complete multi-component system staging, professional assembly wiring optimization, layout cooling structural design, and post-build component benchmarking.</p>
+                    <p>Complete multi-component parts staging, clean layout cable management optimization, structural system cooling design, and full post-assembly hardware benchmarking.</p>
                 </div>
                 <div class="card-bottom">
                     <div class="price-text">£95.00</div>
@@ -290,12 +278,11 @@
                 </div>
             </div>
 
-            <!-- Card 2: Technical Repair Trace -->
-            <div class="service-card" onclick="applyBuildTemplate('Hardware Repair & Fault Analysis', 'Failing Components:\nDevice Symptoms:\nRecent Operating System Errors / Crash Logs:\nSpecial Diagnostics Requests:')">
-                <div class="card-top">
+            <div class="service-card" onclick="applyBuildTemplate('Hardware Repair & Fault Analysis', 'DIAGNOSTIC FAULT MATRIX:\\n- Failing Components: \\n- System Error Crash Logs: \\n- Instability Symptoms: \\n- Special Repair Requests: ')">
+                <div>
                     <span class="badge">Hardware Care</span>
                     <h3>Diagnostic & Parts Repair</h3>
-                    <p>Component breakdown troubleshooting isolation testing, component logic lane hardware tracing, fault repairs, and high-grade thermal replacements.</p>
+                    <p>Component breakdown diagnostic testing, high-grade logic lane trace troubleshooting, physical port repairs, and advanced thermal pad replacements.</p>
                 </div>
                 <div class="card-bottom">
                     <div class="price-text">£45.00 <span style="font-size:0.75rem; color:var(--text-gray); font-weight:normal;">/ hr</span></div>
@@ -303,11 +290,10 @@
                 </div>
             </div>
 
-            <!-- Card 3: OS Installation Shell -->
-
-Operating system
+Use code with caution.
+Operating System
 Linux Architecture Setup
-Professional clean environment installation, custom kernel deployment optimizations, storage partition table architecture setup, and system software builds.
+Professional clean environment provisioning, custom system partition schema setup, kernel configuration profiling optimizations, and core software build setups.
 
 
 £65.00
@@ -319,31 +305,26 @@ Your Full Name / Moniker
 Your Contact Email Address
 System Build Specs / Hardware Manifest Details
 Launch Order Ticket via Email
-© 2026 DML Computers. Premium Technical Infrastructure. Built on Arch Linux Environments.
-// Smoothly inject selected build layout into inputs box
+
+© 2026 DML Computers. Premium Custom Engineering. Built on Arch Linux Workspace Environments.
 function applyBuildTemplate(serviceTitle, specificationsBlueprint) {
 const specTextArea = document.getElementById("user-specs");
 if (specTextArea) {
-specTextArea.value = SELECTED SERVICE: ${serviceTitle.toUpperCase()}\n=========================================\n${specspecificationsBlueprint};
-// Animate viewport down to form layout box smoothly
+specTextArea.value = SELECTED SERVICE: ${serviceTitle.toUpperCase()}\n=========================================\n${specificationsBlueprint};
 document.getElementById("order-form-block").scrollIntoView({ behavior: 'smooth', block: 'center' });
 specTextArea.focus();
 }
 }
-// Direct, un-blockable click-to-email routing module
 function compileAndLaunchEmail() {
 const name = document.getElementById("user-name").value.trim();
 const email = document.getElementById("user-email").value.trim();
 const specsData = document.getElementById("user-specs").value.trim();
 if (!name || !email || !specsData) {
-alert("⚠️ Operations Stopped: Please ensure Name, Email, and System Specifications are filled out before launching your ticket.");
+alert("⚠️ Operations Blocked: Please ensure Name, Email, and System Specifications are filled out before launching your ticket.");
 return;
 }
-// Build clear email text details
 const emailSubject = DML Computers Service Order Request - ${name};
 const emailBody = CLIENT CONTACT DETAILS\n---------------------\nClient Name: ${name}\nClient Email: ${email}\n\nTECHNICAL PARAMETERS & HARDWARE SPECIFICATIONS\n---------------------------------------------\n${specsData};
-// Build instant deep mail link protocol targeting your workspace account
 const mailtoDestination = mailto:dlester626@://gmail.com{encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)};
-// Fire target activation frame
 window.location.href = mailtoDestination;
 }
