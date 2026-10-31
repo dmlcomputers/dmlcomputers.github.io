@@ -260,7 +260,7 @@ Select Architecture Base
 
 Hardware Base
 Custom Workstation Build
-Bespoke system building, strategic routing layout engineering, and systematic high-load verification sweeps. OS excluded.
+Bespoke system configurations, internal wire grouping optimizations, and baseline layout performance testing sweeps. Operating system excluded.
 
 
 £200.00 Base
@@ -268,7 +268,7 @@ Configure Base
 
 Kernel Loaded
 Linux Engineering Machine
-Hardware initialization paired with native kernel custom partition tables, secure layouts, and rolling distribution layers.
+Bespoke assembly paired with enterprise-tier kernel platforms, clean multi-partition layout schemes, and optimizations.
 
 
 £265.00 Base
@@ -285,8 +285,8 @@ System Memory Volatility (RAM)
 Solid State Drive (NVMe Storage)
 Graphics Compute Processing (GPU Node)
 Power Delivery Matrix (PSU Unit)
-Linux Core Architecture
-Desktop Shell Interface
+Linux Core Distribution
+Desktop Shell Environment
 Fulfillment Channels & Delivery Matrix
 
 Client Identity Moniker (Full Name)
@@ -319,4 +319,197 @@ TOTAL SECURED PIPELINE OUTLAY:
 
 ⬅ Adjust Specification
 Initialize Payment Terminal Via PayPal 💳
+
+let selectedBuildMode = 'hardware';
+let calculatedBasePrice = 200.00;
+let cumulativeCalculatedTotal = 0.00;
+const CATALOG_DATABASE = {
+cpu: [
+{ name: "AMD Ryzen 5 7600 (6 Cores / 12 Threads)", price: 180.00 },
+{ name: "AMD Ryzen 7 7800X3D (8 Cores - High Cache Elite)", price: 360.00 },
+{ name: "Intel Core i7-14700K (20 Cores Datacenter Platform)", price: 380.00 }
+],
+mobo: [
+{ name: "B650 AM5 Core Standard Interface Node", price: 140.00 },
+{ name: "X670E Dual-Link Acceleration Array", price: 280.00 },
+{ name: "Z790 LGA1700 Flagship Infrastructure Module", price: 230.00 }
+],
+ram: [
+{ name: "16GB DDR5 High-Speed Channel (5600MT/s)", price: 65.00 },
+{ name: "32GB DDR5 Low-Latency Optimization Matrix (6000MT/s)", price: 115.00 },
+{ name: "64GB DDR5 Enterprise Cluster Station Memory", price: 210.00 }
+],
+storage: [
+{ name: "1TB NVMe PCIe 4.0 High-Density M.2 Solid State", price: 70.00 },
+{ name: "2TB NVMe Performance Partition Allocation M.2", price: 135.00 },
+{ name: "4TB NVMe Data Layer Storage Pool Array", price: 260.00 }
+],
+gpu: [
+{ name: "Integrated Frame Processing Architecture GFX", price: 0.00 },
+{ name: "NVIDIA RTX 4070 Super 12GB Compute Core", price: 540.00 },
+{ name: "NVIDIA RTX 4080 Super 16GB Dedicated Array", price: 950.00 },
+{ name: "AMD Radeon RX 7900 XTX 24GB Framebuffer Pool", price: 880.00 }
+],
+psu: [
+{ name: "750W ATX 3.0 80+ Gold Modular Delivery Unit", price: 90.00 },
+{ name: "850W ATX 3.0 80+ Platinum Static Transformer", price: 130.00 },
+{ name: "1000W ATX 3.0 Heavy Load Compute Rectifier", price: 180.00 }
+],
+distro: [
+{ name: "Arch Linux Core (Vanilla System Rolling Infrastructure)", price: 45.00 },
+{ name: "Ubuntu LTS Long-Term Enterprise Platform Kernel", price: 25.00 },
+{ name: "Debian GNU/Linux Stable (Rock Solid Server Base)", price: 30.00 }
+],
+desktop: [
+{ name: "KDE Plasma 6 (Advanced Extensible Desktop Shell)", price: 20.00 },
+{ name: "GNOME 46 (Simplified Gestural Workspace Node)", price: 20.00 },
+{ name: "Hyprland (Dynamic Wayland Tiling Window Manager)", price: 35.00 }
+]
+};
+function populateInterfaceSelectors() {
+Object.keys(CATALOG_DATABASE).forEach(selectorKey => {
+const DOMElement = document.getElementById(cfg-${selectorKey});
+if (DOMElement) {
+DOMElement.innerHTML = CATALOG_DATABASE[selectorKey].map((option, index) =>
+<option value="${index}">${option.name} (+£${option.price.toFixed(2)})</option>
+).join('');
+}
+});
+}
+function switchActiveView(targetViewID) {
+document.querySelectorAll('.app-view').forEach(view => view.classList.remove('active'));
+document.getElementById(targetViewID).classList.add('active');
+window.scrollTo(0,0);
+}
+function initiateBuildMode(chosenMode) {
+selectedBuildMode = chosenMode;
+const isLinuxMode = (chosenMode === 'linux');
+calculatedBasePrice = isLinuxMode ? 265.00 : 200.00;
+document.getElementById('config-title').innerText = isLinuxMode ? "Configure Linux System Architecture" : "Configure Custom Workstation Architecture";
+document.getElementById('linux-modular-group').style.display = isLinuxMode ? 'block' : 'none';
+populateInterfaceSelectors();
+runBOMRecalculation();
+switchActiveView('view-configurator');
+}
+function gatherActiveSelectionMetrics() {
+let runningPriceTotal = calculatedBasePrice;
+let structuresArray = [{ name: Base Platform Assembly & Labor (${selectedBuildMode.toUpperCase()}), price: calculatedBasePrice }];
+const targetedKeys = ['cpu', 'mobo', 'ram', 'storage', 'gpu', 'psu'];
+if (selectedBuildMode === 'linux') { targetedKeys.push('distro', 'desktop'); }
+targetedKeys.forEach(key => {
+const nodeSelector = document.getElementById(cfg-${key});
+const optionIndex = parseInt(nodeSelector.value) || 0;
+const chosenItem = CATALOG_DATABASE[key][optionIndex];
+runningPriceTotal += chosenItem.price;
+structuresArray.push(chosenItem);
+});
+const logicChannel = document.getElementById('cfg-postage').value;
+if (logicChannel === 'delivery') {
+runningPriceTotal += 20.00;
+structuresArray.push({ name: "Secure Insured Post / Royal Mail Tracked", price: 20.00 });
+} else {
+structuresArray.push({ name: "In-Store Storage Base Collection", price: 0.00 });
+}
+return { total: runningPriceTotal, modules: structuresArray };
+}
+function runBOMRecalculation() {
+const billData = gatherActiveSelectionMetrics();
+cumulativeCalculatedTotal = billData.total;
+document.getElementById('cfg-total-display').value = £${billData.total.toFixed(2)};
+}
+function compileManifestVerification() {
+const clientMoniker = document.getElementById('cfg-name').value.trim();
+const clientMail = document.getElementById('cfg-email').value.trim();
+const clientCoords = document.getElementById('cfg-address').value.trim();
+if (!clientMoniker || !clientMail || !clientCoords) {
+alert("CRITICAL ERROR: Valid identity fields, routing email, and delivery coordinates are required to compile manifest.");
+return;
+}
+const currentBOM = gatherActiveSelectionMetrics();
+document.getElementById('receipt-date').innerText = SYSTEM TIMESTAMP: ${new Date().toISOString().slice(0,19).replace('T',' ')} UTC;
+document.getElementById('receipt-token-id').innerText = MANIFEST TRACKING TOKEN: DML-${Math.floor(100000 + Math.random() * 900000)};
+document.getElementById('receipt-client-name').innerText = CLIENT IDENTIFIER: ${clientMoniker.toUpperCase()};
+document.getElementById('receipt-client-email').innerText = ROUTING NODE: ${clientMail};
+document.getElementById('receipt-client-address').innerText = SHIP-TO DESTINATION METRICS:\n${clientCoords};
+const manifestContainer = document.getElementById('receipt-items-pool');
+manifestContainer.innerHTML = currentBOM.modules.map(item => <div class="receipt-line"> <span style="max-width: 75%; text-align: left;">>> ${item.name}</span> <span>£${item.price.toFixed(2)}</span> </div>).join('');
+document.getElementById('receipt-grand-total').innerText = £${currentBOM.total.toFixed(2)};
+switchActiveView('view-invoice');
+}
+function triggerCheckoutPipeline() {
+const clientMoniker = document.getElementById('cfg-name').value.trim();
+const clientMail = document.getElementById('cfg-email').value.trim();
+const clientCoords = document.getElementById('cfg-address').value.trim();
+const compiledBOM = gatherActiveSelectionMetrics();
+let trackingDescription = DML Computers Order - Client: ${clientMoniker} (${clientMail}) Address: ${clientCoords}. Specs: ;
+compiledBOM.modules.forEach(m => { trackingDescription += [${m.name}] ; });
+const payloadParams = new URLSearchParams({
+cmd: "_xclick",
+business: "dlester626@gmail.com",
+item_name: trackingDescription.substring(0, 120),
+amount: compiledBOM.total.toFixed(2),
+currency_code: "GBP",
+no_shipping: "1"
+});
+window.open(https://paypal.com{payloadParams.toString()}, '_blank');
+}
+// --- BACKGROUND MATRIX LOOP ENGINE ---
+const canvasNode = document.getElementById('bg-canvas');
+const contextNode = canvasNode.getContext('2d');
+let pointsArray = [];
+const targetedPointsCount = 45;
+function reshapeCanvasMetrics() {
+canvasNode.width = window.innerWidth;
+canvasNode.height = window.innerHeight;
+}
+window.addEventListener('resize', reshapeCanvasMetrics);
+reshapeCanvasMetrics();
+for (let i = 0; i < targetedPointsCount; i++) {
+pointsArray.push({
+horizontalPos: Math.random() * canvasNode.width,
+verticalPos: Math.random() * canvasNode.height,
+horizontalVelocity: (Math.random() - 0.5) * 0.6,
+verticalVelocity: (Math.random() - 0.5) * 0.6
+});
+}
+function runAnimationLoop() {
+contextNode.clearRect(0, 0, canvasNode.width, canvasNode.height);
+contextNode.strokeStyle = 'rgba(0, 240, 255, 0.04)';
+contextNode.lineWidth = 1;
+const matrixGridSpacing = 55;
+for (let x = 0; x < canvasNode.width; x += matrixGridSpacing) {
+contextNode.beginPath(); contextNode.moveTo(x, 0); contextNode.lineTo(x, canvasNode.height); contextNode.stroke();
+}
+for (let y = 0; y < canvasNode.height; y += matrixGridSpacing) {
+contextNode.beginPath(); contextNode.moveTo(0, y); contextNode.lineTo(canvasNode.width, y); contextNode.stroke();
+}
+pointsArray.forEach(point => {
+point.horizontalPos += point.horizontalVelocity;
+point.verticalPos += point.verticalVelocity;
+if (point.horizontalPos < 0 || point.horizontalPos > canvasNode.width) point.horizontalVelocity *= -1;
+if (point.verticalPos < 0 || point.verticalPos > canvasNode.height) point.verticalVelocity *= -1;
+contextNode.fillStyle = 'rgba(0, 240, 255, 0.25)';
+contextNode.beginPath();
+contextNode.arc(point.horizontalPos, point.verticalPos, 1.5, 0, Math.PI * 2);
+contextNode.fill();
+});
+for (let i = 0; i < pointsArray.length; i++) {
+for (let j = i + 1; j < pointsArray.length; j++) {
+const deltaX = pointsArray[i].horizontalPos - pointsArray[j].horizontalPos;
+const deltaY = pointsArray[i].verticalPos - pointsArray[j].verticalPos;
+const spaceDistance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+if (spaceDistance < 115) {
+contextNode.strokeStyle = rgba(0, 240, 255, ${0.12 * (1 - spaceDistance / 115)});
+contextNode.beginPath();
+contextNode.moveTo(pointsArray[i].horizontalPos, pointsArray[i].verticalPos);
+contextNode.lineTo(pointsArray[j].horizontalPos, pointsArray[j].verticalPos);
+contextNode.stroke();
+}
+}
+}
+requestAnimationFrame(runAnimationLoop);
+}
+runAnimationLoop();
+
+
 
